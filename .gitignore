@@ -29,6 +29,7 @@ env/
 venv/
 ENV/
 .ENV
+.trae
 
 # Django
 *.log
