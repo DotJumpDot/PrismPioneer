@@ -1,0 +1,67 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="About">
+  <section class="py-8">
+    <h1 class="text-4xl font-bold mb-8">About Me</h1>
+    
+    <div class="prose max-w-none">
+      <div class="bg-white rounded-lg shadow-md p-8 mb-8">
+        <h2 class="text-2xl font-semibold mb-4">Welcome to PrismPioneer</h2>
+        <p class="text-gray-700 mb-4">
+          PrismPioneer is a modern portfolio and blog platform showcasing innovative projects 
+          and sharing insights about technology, development, and creative problem-solving.
+        </p>
+        <p class="text-gray-700 mb-4">
+          This project demonstrates the power of combining Astro's static site generation 
+          with Django's robust backend API, creating a seamless and performant web experience.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div class="bg-white rounded-lg shadow-md p-6">
+          <h3 class="text-xl font-semibold mb-3">Tech Stack</h3>
+          <ul class="space-y-2 text-gray-700">
+            <li><strong>Frontend:</strong> Astro, TypeScript, Tailwind CSS</li>
+            <li><strong>Backend:</strong> Django, Django REST Framework</li>
+            <li><strong>Database:</strong> PostgreSQL (Supabase)</li>
+            <li><strong>API Documentation:</strong> drf-spectacular (Swagger)</li>
+          </ul>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-md p-6">
+          <h3 class="text-xl font-semibold mb-3">Features</h3>
+          <ul class="space-y-2 text-gray-700">
+            <li>✓ Responsive design</li>
+            <li>✓ Fast page loads</li>
+            <li>✓ SEO optimized</li>
+            <li>✓ Interactive API documentation</li>
+            <li>✓ Dynamic content management</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-primary-50 rounded-lg p-8 text-center">
+        <h3 class="text-2xl font-semibold mb-4">Get in Touch</h3>
+        <p class="text-gray-700 mb-6">
+          Interested in collaborating or have a question? Feel free to reach out!
+        </p>
+        <div class="flex justify-center space-x-4">
+          <a 
+            href="mailto:contact@example.com" 
+            class="bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition"
+          >
+            Contact Me
+          </a>
+          <a 
+            href="/portfolio" 
+            class="border border-primary-600 text-primary-600 px-6 py-3 rounded-lg hover:bg-primary-50 transition"
+          >
+            View My Work
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

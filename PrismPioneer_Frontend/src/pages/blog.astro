@@ -1,0 +1,82 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { blogService } from '@/service/blog';
+import type { BlogPost, BlogCategory } from '@/types/blog';
+
+const postsResponse = await blogService.getPosts();
+const posts: BlogPost[] = postsResponse.results;
+const categoriesResponse = await blogService.getCategories();
+const categories: BlogCategory[] = categoriesResponse;
+---
+
+<Layout title="Blog">
+  <section class="py-8">
+    <h1 class="text-4xl font-bold mb-8">Blog</h1>
+    
+    {categories.length > 0 && (
+      <div class="mb-8">
+        <div class="flex flex-wrap gap-2">
+          <a 
+            href="/blog" 
+            class="px-4 py-2 rounded-full bg-primary-600 text-white"
+          >
+            All
+          </a>
+          {categories.map((category) => (
+            <a 
+              href={`/blog?category=${category.slug}`}
+              class="px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-gray-300 transition"
+            >
+              {category.name}
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {posts.length > 0 ? (
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {posts.map((post) => (
+          <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+            {post.featured_image && (
+              <img 
+                src={post.featured_image} 
+                alt={post.title}
+                class="w-full h-48 object-cover"
+              />
+            )}
+            <div class="p-6">
+              <div class="flex items-center text-sm text-gray-500 mb-2">
+                <span>{post.author_username}</span>
+                <span class="mx-2">•</span>
+                <time datetime={post.published_at || post.created_at}>
+                  {new Date(post.published_at || post.created_at).toLocaleDateString()}
+                </time>
+                {post.is_featured && (
+                  <span class="ml-2 px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded">
+                    Featured
+                  </span>
+                )}
+              </div>
+              <h2 class="text-xl font-semibold mb-2">{post.title}</h2>
+              <p class="text-gray-600 mb-4">{post.excerpt}</p>
+              <div class="flex items-center justify-between">
+                <a 
+                  href={`/blog/${post.slug}`} 
+                  class="text-primary-600 hover:text-primary-700 font-medium"
+                >
+                  Read More →
+                </a>
+                <span class="text-sm text-gray-500">
+                  {post.views} views
+                </span>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    ) : (
+      <p class="text-gray-600 text-center py-12">No blog posts found.</p>
+    )}
+  </section>
+</Layout>
