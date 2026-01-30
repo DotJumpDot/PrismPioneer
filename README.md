@@ -1,12 +1,12 @@
 # PrismPioneer
 
-A modern portfolio and blog website built with Astro (frontend) and Django (backend), powered by Supabase PostgreSQL database.
+A modern portfolio and blog website built with Astro (frontend) and ElysiaJS (backend), powered by Supabase PostgreSQL database.
 
 ## Project Structure
 
 ```
 PrismPioneer/
-├── PrismPioneer_Backend/    # Django backend API
+├── PrismPioneer_Backend/    # ElysiaJS backend API
 ├── PrismPioneer_Frontend/   # Astro frontend application
 ├── Docs/                    # Documentation
 ├── .env                     # Environment variables (shared)
@@ -20,19 +20,24 @@ PrismPioneer/
 ## Tech Stack
 
 ### Frontend
+
 - **Astro**: Modern web framework for content-focused websites
 - **TypeScript**: Type-safe JavaScript
 - **Tailwind CSS**: Utility-first CSS framework
 - **Axios**: HTTP client for API requests
 
 ### Backend
-- **Django**: High-level Python web framework
-- **Django REST Framework**: Powerful toolkit for building Web APIs
-- **drf-spectacular**: OpenAPI 3.0 schema generation with Swagger UI
-- **psycopg2**: PostgreSQL adapter for Python
-- **python-dotenv**: Read environment variables from .env file
+
+- **ElysiaJS**: Fast and friendly Bun web framework
+- **TypeScript**: Type-safe JavaScript for backend
+- **PostgreSQL**: Direct PostgreSQL integration with `postgres` package
+- **JWT**: JSON Web Token authentication
+- **Bcrypt**: Password hashing and verification
+- **Swagger**: OpenAPI documentation generation
+- **CORS**: Cross-Origin Resource Sharing support
 
 ### Database
+
 - **Supabase PostgreSQL**: Managed PostgreSQL database
 
 ## Features
@@ -48,61 +53,55 @@ PrismPioneer/
 
 ### Prerequisites
 
-- Python 3.10+
+- Bun.js (latest version)
 - Node.js 18+
 - Supabase account
 
 ### Setup
 
 1. **Clone the repository**
+
    ```bash
    git clone <repository-url>
    cd PrismPioneer
    ```
 
 2. **Create environment file**
+
    ```bash
    cp env.example .env
    ```
-   
+
    Fill in your environment variables in the `.env` file.
 
 3. **Backend Setup**
+
    ```bash
    cd PrismPioneer_Backend
-   
-   # Create virtual environment
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   
+
    # Install dependencies
-   pip install -r requirements.txt
-   
-   # Run migrations
-   python manage.py migrate
-   
-   # Create superuser
-   python manage.py createsuperuser
-   
+   bun install
+
    # Run development server
-   python manage.py runserver
+   bun run dev
    ```
-   
-   The backend API will be available at `http://localhost:8000`
-   Swagger documentation: `http://localhost:8000/api/docs/`
+
+   The backend API will be available at `http://localhost:4100`
+   Swagger documentation: `http://localhost:4100/docs`
 
 4. **Frontend Setup**
+
    ```bash
    cd PrismPioneer_Frontend
-   
+
    # Install dependencies
    npm install
-   
+
    # Start development server
    npm run dev
    ```
-   
-   The frontend will be available at `http://localhost:4321`
+
+   The frontend will be available at `http://localhost:4200`
 
 ## Environment Variables
 
@@ -110,17 +109,19 @@ See `env.example` for required environment variables.
 
 ## API Documentation
 
-Once the backend is running, visit `http://localhost:8000/api/docs/` for interactive API documentation.
+Once the backend is running, visit `http://localhost:4100/docs` for interactive API documentation.
 
 ## Development
 
 ### Backend Development
-- Django admin: `http://localhost:8000/admin`
-- API root: `http://localhost:8000/api/`
-- Swagger docs: `http://localhost:8000/api/docs/`
+
+- API root: `http://localhost:4100/api/`
+- Swagger docs: `http://localhost:4100/docs`
+- Health check: `http://localhost:4100/health`
 
 ### Frontend Development
-- Dev server: `http://localhost:4321`
+
+- Dev server: `http://localhost:4200`
 - Build: `npm run build`
 - Preview: `npm run preview`
 
