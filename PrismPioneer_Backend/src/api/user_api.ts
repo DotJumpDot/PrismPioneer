@@ -10,11 +10,6 @@ import {
   UserErrorResponse,
 } from "../type/user_type";
 
-// Initialize database on startup
-initializeDatabase().then(() => {
-  UserSQL.createTable();
-});
-
 export const userApi = new Elysia({ prefix: "/users" })
   // Get all users
   .get(

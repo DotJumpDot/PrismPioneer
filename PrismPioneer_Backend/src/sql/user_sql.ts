@@ -3,10 +3,6 @@ import { User, CreateUserInput, UpdateUserInput, UserQueryParams } from "../type
 import bcrypt from "bcrypt";
 
 export class UserSQL {
-  static async createTable() {
-    console.log("ℹ️ Table creation should be done via Supabase Dashboard SQL Editor.");
-  }
-
   static async hashPassword(password: string): Promise<string> {
     const saltRounds = 12;
     return await bcrypt.hash(password, saltRounds);
