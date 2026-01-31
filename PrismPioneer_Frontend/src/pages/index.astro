@@ -1,17 +1,5 @@
 ---
-import Layout from '@/layouts/Layout.astro';
-import { blogService } from '@/service/blog';
-import { portfolioService } from '@/service/portfolio';
-import type { BlogPost } from '@/types/blog';
-import type { Project } from '@/types/portfolio';
-
-const [blogResponse, portfolioResponse] = await Promise.all([
-  blogService.getFeaturedPosts(),
-  portfolioService.getFeaturedProjects(),
-]);
-
-const featuredPosts: BlogPost[] = blogResponse.results.slice(0, 3);
-const featuredProjects: Project[] = portfolioResponse.results.slice(0, 3);
+import Layout from '@/layouts/Landing.astro';
 ---
 
 <Layout title="Home">
@@ -37,69 +25,4 @@ const featuredProjects: Project[] = portfolioResponse.results.slice(0, 3);
       </a>
     </div>
   </section>
-
-  {featuredProjects.length > 0 && (
-    <section class="py-16">
-      <h2 class="text-3xl font-bold mb-8">Featured Projects</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {featuredProjects.map((project) => (
-          <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
-            {project.thumbnail && (
-              <img 
-                src={project.thumbnail} 
-                alt={project.title}
-                class="w-full h-48 object-cover"
-              />
-            )}
-            <div class="p-6">
-              <h3 class="text-xl font-semibold mb-2">{project.title}</h3>
-              <p class="text-gray-600 mb-4">{project.short_description}</p>
-              <a 
-                href={`/portfolio/${project.slug}`} 
-                class="text-primary-600 hover:text-primary-700 font-medium"
-              >
-                View Project →
-              </a>
-            </div>
-          </article>
-        ))}
-      </div>
-    </section>
-  )}
-
-  {featuredPosts.length > 0 && (
-    <section class="py-16">
-      <h2 class="text-3xl font-bold mb-8">Latest Blog Posts</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {featuredPosts.map((post) => (
-          <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
-            {post.featured_image && (
-              <img 
-                src={post.featured_image} 
-                alt={post.title}
-                class="w-full h-48 object-cover"
-              />
-            )}
-            <div class="p-6">
-              <div class="flex items-center text-sm text-gray-500 mb-2">
-                <span>{post.author_username}</span>
-                <span class="mx-2">•</span>
-                <time datetime={post.published_at || post.created_at}>
-                  {new Date(post.published_at || post.created_at).toLocaleDateString()}
-                </time>
-              </div>
-              <h3 class="text-xl font-semibold mb-2">{post.title}</h3>
-              <p class="text-gray-600 mb-4">{post.excerpt}</p>
-              <a 
-                href={`/blog/${post.slug}`} 
-                class="text-primary-600 hover:text-primary-700 font-medium"
-              >
-                Read More →
-              </a>
-            </div>
-          </article>
-        ))}
-      </div>
-    </section>
-  )}
 </Layout>

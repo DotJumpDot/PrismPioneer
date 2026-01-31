@@ -1,0 +1,36 @@
+Create a professional landing page for "Prism Pioneer" with an 8-bit retro arcade rainbow gaming theme. The landing page must be built using Astro framework and follow a highly modular component architecture. 
+ 
+ Technical Requirements: 
+ - Create the main layout file at PrismPioneer_Frontend\src\layouts\Landing.astro 
+ - Split the landing page into maximum reusable components in PrismPioneer_Frontend\src\components\Landing directory 
+ - Implement 8-bit pixel art styling with CSS animations 
+ - Use rainbow color gradients and neon glow effects 
+ - Include retro arcade game visual elements and sprites 
+ - Ensure responsive design for desktop, tablet, and mobile devices 
+ - Optimize for fast loading with Astro's partial hydration 
+ 
+ Component Structure Requirements: 
+ - Header component with Prism Pioneer logo and navigation 
+ - Hero section with animated 8-bit rainbow background 
+ - Features showcase with pixel art icons 
+ - Game preview/screenshot gallery component 
+ - Call-to-action buttons with hover effects 
+ - Footer with retro gaming aesthetic 
+ 
+ Design Specifications: 
+ - Color palette: vibrant rainbow gradients (#FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #4B0082, #9400D3) 
+ - Typography: pixel fonts (Press Start 2P or similar) 
+ - Animations: 8-bit style transitions, sprite movements, rainbow cycling 
+ - Background: animated pixel grid or arcade cabinet frame 
+ 
+ Deliverables: 
+ - Landing.astro layout file with proper component imports 
+ - Minimum 8 reusable components in components/Landing directory 
+ - CSS modules or styled components for 8-bit styling 
+ - Responsive breakpoints: 320px, 768px, 1024px, 1440px 
+ - Cross-browser compatibility (Chrome, Firefox, Safari, Edge) 
+ 
+ Installation Requirements: 
+ - Install necessary Astro dependencies for animations and styling 
+ - Use Astro Islands for interactive components 
+ - Implement lazy loading for images and assets

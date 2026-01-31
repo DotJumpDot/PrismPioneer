@@ -1,0 +1,378 @@
+:root {
+  --pixel-red: #FF0000;
+  --pixel-orange: #FF7F00;
+  --pixel-yellow: #FFFF00;
+  --pixel-green: #00FF00;
+  --pixel-blue: #0000FF;
+  --pixel-indigo: #4B0082;
+  --pixel-violet: #9400D3;
+  --pixel-pink: #FF69B4;
+  --pixel-cyan: #00FFFF;
+  --pixel-white: #FFFFFF;
+  --pixel-black: #000000;
+  --pixel-gray: #808080;
+  --pixel-dark-gray: #333333;
+  --pixel-light-gray: #CCCCCC;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: 'Press Start 2P';
+  src: url('https://fonts.gstatic.com/s/pressstart2p/v15/v8le4KCZbMpTFwqjY3GZ5Q.woff2') format('woff2');
+  font-display: swap;
+}
+
+.pixel-font {
+  font-family: 'Press Start 2P', cursive, monospace;
+}
+
+.pixel-border {
+  border: 4px solid var(--pixel-white);
+  box-shadow: 
+    0 4px 0 var(--pixel-dark-gray),
+    0 8px 0 var(--pixel-gray),
+    inset 0 0 0 4px var(--pixel-black);
+}
+
+.pixel-card {
+  background: var(--pixel-dark-gray);
+  border: 4px solid var(--pixel-white);
+  box-shadow: 
+    4px 4px 0 var(--pixel-black),
+    inset 0 0 0 2px var(--pixel-gray);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.pixel-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 
+    6px 6px 0 var(--pixel-black),
+    inset 0 0 0 2px var(--pixel-gray);
+}
+
+.rainbow-text {
+  background: linear-gradient(
+    90deg,
+    var(--pixel-red),
+    var(--pixel-orange),
+    var(--pixel-yellow),
+    var(--pixel-green),
+    var(--pixel-blue),
+    var(--pixel-indigo),
+    var(--pixel-violet)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: rainbowShift 3s linear infinite;
+}
+
+@keyframes rainbowShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.rainbow-border {
+  border: 4px solid transparent;
+  background: 
+    linear-gradient(var(--pixel-dark-gray), var(--pixel-dark-gray)) padding-box,
+    linear-gradient(
+      90deg,
+      var(--pixel-red),
+      var(--pixel-orange),
+      var(--pixel-yellow),
+      var(--pixel-green),
+      var(--pixel-blue),
+      var(--pixel-indigo),
+      var(--pixel-violet)
+    ) border-box;
+  animation: rainbowBorder 3s linear infinite;
+}
+
+@keyframes rainbowBorder {
+  0%, 100% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+.neon-glow {
+  text-shadow: 
+    0 0 5px currentColor,
+    0 0 10px currentColor,
+    0 0 20px currentColor,
+    0 0 40px currentColor;
+}
+
+.neon-box {
+  box-shadow: 
+    0 0 5px var(--pixel-cyan),
+    0 0 10px var(--pixel-cyan),
+    0 0 20px var(--pixel-cyan),
+    0 0 40px var(--pixel-cyan),
+    inset 0 0 10px var(--pixel-cyan);
+  border: 2px solid var(--pixel-cyan);
+}
+
+.pixel-grid {
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 8px 8px;
+  background-position: center center;
+}
+
+.animated-pixel-grid {
+  background: 
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.03) 0px,
+      rgba(255, 255, 255, 0.03) 4px,
+      transparent 4px,
+      transparent 8px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.03) 0px,
+      rgba(255, 255, 255, 0.03) 4px,
+      transparent 4px,
+      transparent 8px
+    );
+  animation: gridMove 20s linear infinite;
+}
+
+@keyframes gridMove {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 8px 8px;
+  }
+}
+
+.rainbow-bg {
+  background: linear-gradient(
+    135deg,
+    var(--pixel-red) 0%,
+    var(--pixel-orange) 15%,
+    var(--pixel-yellow) 30%,
+    var(--pixel-green) 45%,
+    var(--pixel-blue) 60%,
+    var(--pixel-indigo) 75%,
+    var(--pixel-violet) 90%
+  );
+  animation: rainbowBg 10s ease infinite;
+  background-size: 400% 400%;
+}
+
+@keyframes rainbowBg {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.arcade-cabinet {
+  background: var(--pixel-dark-gray);
+  border: 8px solid var(--pixel-white);
+  border-radius: 8px;
+  box-shadow: 
+    0 8px 0 var(--pixel-black),
+    0 16px 0 var(--pixel-gray),
+    inset 0 0 0 4px var(--pixel-black);
+  position: relative;
+}
+
+.arcade-cabinet::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: -12px;
+  right: -12px;
+  bottom: -12px;
+  border: 4px solid var(--pixel-pink);
+  pointer-events: none;
+  animation: arcadeGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes arcadeGlow {
+  0% {
+    box-shadow: 0 0 10px var(--pixel-pink), inset 0 0 10px var(--pixel-pink);
+  }
+  100% {
+    box-shadow: 0 0 30px var(--pixel-pink), 0 0 60px var(--pixel-pink), inset 0 0 20px var(--pixel-pink);
+  }
+}
+
+.pixel-scanline {
+  position: relative;
+  overflow: hidden;
+}
+
+.pixel-scanline::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0.1) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+}
+
+.flicker {
+  animation: flicker 0.1s infinite;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.98; }
+}
+
+.pixel-bounce {
+  animation: pixelBounce 0.5s ease infinite;
+}
+
+@keyframes pixelBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.pixel-pulse {
+  animation: pixelPulse 1s ease-in-out infinite;
+}
+
+@keyframes pixelPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.pixel-shake {
+  animation: pixelShake 0.5s ease infinite;
+}
+
+@keyframes pixelShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  75% { transform: translateX(2px); }
+}
+
+@media (max-width: 320px) {
+  .pixel-font {
+    font-size: 10px;
+  }
+}
+
+@media (min-width: 768px) {
+  .pixel-font {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .pixel-font {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .pixel-font {
+    font-size: 16px;
+  }
+}
+
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 32px;
+  }
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-4 {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+  }
+}
