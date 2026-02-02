@@ -7,40 +7,59 @@ const LANGUAGE_COLORS: Record<string, string> = {
   HTML: '#E34F26',
   HTML5: '#E34F26',
   CSS: '#1572B6',
+  Python: '#3776AB',
+  Java: '#007396',
   Svelte: '#FF3E00',
   'Svelte 5': '#FF3E00',
-  ElysiaJS: '#FF3E00',
-  Bun: '#FBF0DF',
-  PostgreSQL: '#336791',
-  Supabase: '#3ECF8D',
-  JWT: '#000000',
-  WebSocket: '#F7DF1E',
-  CORS: '#009688',
-  Swagger: '#85EA2D',
-  i18n: '#E10098',
-  KaTeX: '#00C8D3',
-  'Next.js 16': '#000000',
-  'Next.js': '#000000',
-  'React 19': '#61DAFB',
+  Vue: '#4FC08D',
+  Quasar: '#1976D2',
   React: '#61DAFB',
+  'React 19': '#61DAFB',
   'Mantine UI': '#339AF0',
   'Ant Design': '#1890FF',
+  Vuetify: '#1867C0',
+  ElysiaJS: '#FF3E00',
+  NestJS: '#E0234E',
+  FastAPI: '#05998B',
+  PostgreSQL: '#336791',
+  MySQL: '#4479A1',
+  SQLite: '#003B57',
+  MongoDB: '#47A248',
+  Supabase: '#3ECF8D',
+  JWT: '#000000',
+  Bcrypt: '#E10098',
+  'API Key': '#FF6B6B',
+  CORS: '#009688',
+  WebSocket: '#F7DF1E',
+  Swagger: '#85EA2D',
+  i18n: '#E10098',
   'Framer Motion': '#FF0080',
   Zustand: '#20A7C1',
   'next-intl': '#00B4D8',
-  'Tailwind CSS 4': '#38B2AC',
   'Tailwind CSS': '#38B2AC',
+  'Tailwind CSS 4': '#38B2AC',
   Turbo: '#000000',
   'VS Code API': '#007ACC',
   'VS Code': '#007ACC',
   'Node.js': '#339933',
+  Yarn: '#2C8EBB',
+  Bun: '#FBF0DF',
+  Astro: '#FF5D01',
+  'Astro 5': '#FF5D01',
   simpleGame: '#E34F26',
   'simpleGame.js': '#E34F26',
   'PNG sprites': '#E34F26',
   'MP3 audio': '#F7DF1E',
   'Puzzle games': '#FFA500',
-  'Astro 5': '#FF5D01',
-  Astro: '#FF5D01'
+  Netlify: '#00C7B7',
+  Railway: '#8A2BE2',
+  Atlas: '#00ED64',
+  Drizzle: '#C5F74F',
+  Redis: '#DC382D',
+  Docker: '#2496ED',
+  KaTeX: '#00C8D3',
+  'Next.js': '#000000',
+  'Next.js 16': '#000000'
 };
 
 const featuredProjects = projects.filter(project => project.featured);
@@ -198,14 +217,21 @@ const featuredProjects = projects.filter(project => project.featured);
     display: grid;
     grid-template-columns: 1fr;
     gap: 32px;
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
   }
 
   @media (min-width: 768px) {
     .projects-container {
       grid-template-columns: repeat(2, 1fr);
-      gap: 40px;
+      gap: 32px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .projects-container {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
     }
   }
 
@@ -217,6 +243,9 @@ const featuredProjects = projects.filter(project => project.featured);
     transition: all 0.3s ease;
     animation: cardFadeIn 0.6s ease-out forwards;
     opacity: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
 
   @keyframes cardFadeIn {
@@ -238,10 +267,11 @@ const featuredProjects = projects.filter(project => project.featured);
 
   .project-header {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: flex-start;
     margin-bottom: 16px;
-    gap: 16px;
+    gap: 8px;
   }
 
   .project-name {
@@ -254,7 +284,7 @@ const featuredProjects = projects.filter(project => project.featured);
 
   .project-date {
     font-family: 'Press Start 2P', cursive;
-    font-size: 9px;
+    font-size: 10px;
     color: #666;
     white-space: nowrap;
   }
@@ -270,6 +300,7 @@ const featuredProjects = projects.filter(project => project.featured);
     display: flex;
     flex-direction: column;
     gap: 16px;
+    margin-top: auto;
   }
 
   .project-languages {
@@ -357,15 +388,6 @@ const featuredProjects = projects.filter(project => project.featured);
 
     .project-card {
       padding: 24px;
-    }
-
-    .project-header {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-
-    .project-date {
-      margin-top: 8px;
     }
   }
 

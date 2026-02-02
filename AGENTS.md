@@ -5,8 +5,9 @@ This document describes the AI agents configured for the PrismPioneer project.
 ## Project Agents
 
 ### Trae AI Assistant
+
 - **Role**: Code assistant and project setup agent
-- **Capabilities**: 
+- **Capabilities**:
   - Project structure creation
   - Code generation and refactoring
   - Database schema design
@@ -19,7 +20,33 @@ This document describes the AI agents configured for the PrismPioneer project.
 
 ## Agent Guidelines
 
+### Version Management
+
+When updating CHANGELOGS.md, follow these versioning rules:
+
+- **0.x.0** (Major Features): Use when creating new main functions, new UI components, new pages, or significant feature additions
+  - Examples: New page creation, major component development, new API endpoints, database schema changes
+  
+- **0.0.x** (Minor Updates/Bug Fixes): Use for minor updates, bug fixes, styling improvements, or small enhancements
+  - Examples: UI styling changes, bug fixes, accessibility improvements, text updates, performance optimizations
+
+- **1.0.0** (Release): Use when all normal requirements are complete and the project is ready for production
+
+Always update the version number at the top of the changelog entry with the date in YYYY-MM-DD format.
+
+When updating CHANGELOGS.md, also update the version in:
+- `PrismPioneer_Frontend/package.json`
+- `PrismPioneer_Backend/package.json` (if applicable)
+
+Sync the package.json version to match the latest CHANGELOG version.
+
+### Command Execution Restrictions
+
+- **IMPORTANT**: Do NOT automatically run `npm run dev` or `npm run build` commands unless explicitly requested by the user
+- Only run these commands when the user specifically asks to start the development server or build the project
+
 ### Backend Development
+
 - Follow ElysiaJS best practices
 - Use TypeScript for type safety
 - Implement proper authentication and authorization
@@ -30,6 +57,7 @@ This document describes the AI agents configured for the PrismPioneer project.
 - Implement proper error handling and validation
 
 ### Frontend Development
+
 - Follow Astro 5 framework conventions
 - Implement responsive design with CSS-in-JS or inline styles
 - Use TypeScript for type safety
@@ -40,6 +68,7 @@ This document describes the AI agents configured for the PrismPioneer project.
 - Create dynamic components with server-side rendering
 
 ### Code Quality
+
 - Write clean, readable code
 - Follow TypeScript best practices
 - Use ESLint rules for TypeScript/JavaScript
@@ -49,6 +78,7 @@ This document describes the AI agents configured for the PrismPioneer project.
 - Use async/await for asynchronous operations
 
 ### Database Design
+
 - Use PostgreSQL with proper indexing
 - Implement proper foreign key relationships
 - Use UUIDs for primary keys
@@ -56,6 +86,7 @@ This document describes the AI agents configured for the PrismPioneer project.
 - Use transactions for data integrity
 
 ### API Design
+
 - Use consistent naming conventions
 - Implement proper HTTP status codes
 - Use pagination for list endpoints
@@ -66,6 +97,7 @@ This document describes the AI agents configured for the PrismPioneer project.
 ## Future Agent Configurations
 
 This section can be expanded to include additional AI agents for:
+
 - Testing automation
 - Deployment CI/CD
 - Content generation

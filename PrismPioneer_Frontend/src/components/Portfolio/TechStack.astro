@@ -10,98 +10,150 @@ const LANGUAGE_COLORS: Record<string, string> = {
   TypeScript: '#007ACC',
   JavaScript: '#F7DF1E',
   HTML: '#E34F26',
-  HTML5: '#E34F26',
   CSS: '#1572B6',
+  Python: '#3776AB',
+  Java: '#007396',
   Svelte: '#FF3E00',
-  'Svelte 5': '#FF3E00',
-  ElysiaJS: '#FF3E00',
-  Bun: '#FBF0DF',
-  PostgreSQL: '#336791',
-  Supabase: '#3ECF8D',
-  JWT: '#000000',
-  WebSocket: '#F7DF1E',
-  CORS: '#009688',
-  Swagger: '#85EA2D',
-  i18n: '#E10098',
-  KaTeX: '#00C8D3',
-  'Next.js 16': '#000000',
-  'Next.js': '#000000',
-  'React 19': '#61DAFB',
+  Vue: '#4FC08D',
+  Quasar: '#1976D2',
   React: '#61DAFB',
   'Mantine UI': '#339AF0',
   'Ant Design': '#1890FF',
+  Vuetify: '#1867C0',
+  ElysiaJS: '#FF3E00',
+  NestJS: '#E0234E',
+  FastAPI: '#05998B',
+  PostgreSQL: '#336791',
+  MySQL: '#4479A1',
+  SQLite: '#003B57',
+  MongoDB: '#47A248',
+  Supabase: '#3ECF8D',
+  JWT: '#000000',
+  Bcrypt: '#E10098',
+  'API Key': '#FF6B6B',
+  CORS: '#009688',
+  WebSocket: '#F7DF1E',
+  Swagger: '#85EA2D',
+  i18n: '#E10098',
   'Framer Motion': '#FF0080',
   Zustand: '#20A7C1',
-  'next-intl': '#00B4D8',
-  'Tailwind CSS 4': '#38B2AC',
   'Tailwind CSS': '#38B2AC',
   Turbo: '#000000',
   'VS Code API': '#007ACC',
-  'VS Code': '#007ACC',
   'Node.js': '#339933',
-  simpleGame: '#E34F26',
+  Yarn: '#2C8EBB',
+  Bun: '#FBF0DF',
+  Astro: '#FF5D01',
   'simpleGame.js': '#E34F26',
   'PNG sprites': '#E34F26',
   'MP3 audio': '#F7DF1E',
   'Puzzle games': '#FFA500',
-  'Astro 5': '#FF5D01',
-  Astro: '#FF5D01'
+  Netlify: '#00C7B7',
+  Railway: '#8A2BE2',
+  Atlas: '#00ED64'
 };
 
 const CATEGORY_MAPPING: Record<string, string> = {
-  'Svelte 5': 'Frontend',
   Svelte: 'Frontend',
-  TypeScript: 'Frontend',
-  JavaScript: 'Frontend',
-  HTML: 'Frontend',
-  HTML5: 'Frontend',
-  CSS: 'Frontend',
-  'Next.js 16': 'Frontend',
+  'Svelte 5': 'Frontend',
+  Vue: 'Frontend',
+  Quasar: 'Frontend',
+  TypeScript: 'Languages',
+  JavaScript: 'Languages',
+  HTML: 'Languages',
+  HTML5: 'Languages',
+  CSS: 'Languages',
+  Python: 'Languages',
+  Java: 'Languages',
   'Next.js': 'Frontend',
-  'React 19': 'Frontend',
+  'Next.js 16': 'Frontend',
   React: 'Frontend',
+  'React 19': 'Frontend',
   'Mantine UI': 'UI Frameworks',
   'Ant Design': 'UI Frameworks',
-  'Framer Motion': 'Animations',
-  'next-intl': 'Internationalization',
-  'Tailwind CSS 4': 'Styling',
-  'Tailwind CSS': 'Styling',
-  'Astro 5': 'Frontend',
+  Vuetify: 'UI Frameworks',
+  'Tailwind CSS': 'Frontend',
+  'Tailwind CSS 4': 'Frontend',
   Astro: 'Frontend',
+  'Astro 5': 'Frontend',
   ElysiaJS: 'Backend',
-  Bun: 'Backend Runtime',
+  NestJS: 'Backend',
+  FastAPI: 'Backend',
   PostgreSQL: 'Database',
-  Supabase: 'Storage',
+  MySQL: 'Database',
+  SQLite: 'Database',
+  MongoDB: 'Database',
+  Supabase: 'Database',
   JWT: 'Authentication',
-  WebSocket: 'Real-time',
-  CORS: 'Security',
-  Swagger: 'Documentation',
-  i18n: 'Internationalization',
-  KaTeX: 'Math Rendering',
-  Zustand: 'State Management',
-  Turbo: 'Performance',
-  'VS Code API': 'Tools',
-  'VS Code': 'Tools',
+  Bcrypt: 'Authentication',
+  'API Key': 'Authentication',
+  CORS: 'Authentication',
+  WebSocket: 'Misc Library',
+  Swagger: 'Misc Library',
+  i18n: 'Misc Library',
+  'Framer Motion': 'Misc Library',
+  Zustand: 'Misc Library',
+  Turbo: 'Misc Library',
+  'VS Code API': 'Misc Library',
   'Node.js': 'Runtime',
-  simpleGame: 'Game Engine',
-  'simpleGame.js': 'Game Engine',
-  'PNG sprites': 'Assets',
-  'MP3 audio': 'Assets',
-  'Puzzle games': 'Games'
+  Yarn: 'Runtime',
+  Bun: 'Runtime',
+  simpleGame: 'Misc Library',
+  'simpleGame.js': 'Misc Library',
+  'PNG sprites': 'Misc Library',
+  'MP3 audio': 'Misc Library',
+  'Puzzle games': 'Misc Library',
+  Netlify: 'Deploy',
+  Railway: 'Deploy',
+  Atlas: 'Deploy'
+};
+
+const normalizeTechName = (tech: string): string => {
+  const versionPatterns = [
+    { pattern: /Svelte 5/, replacement: 'Svelte' },
+    { pattern: /Next\.js 16/, replacement: 'Next.js' },
+    { pattern: /Next\.js/, replacement: 'Next.js' },
+    { pattern: /React 19/, replacement: 'React' },
+    { pattern: /Tailwind CSS 4/, replacement: 'Tailwind CSS' },
+    { pattern: /HTML5/, replacement: 'HTML' },
+    { pattern: /Astro 5/, replacement: 'Astro' },
+    { pattern: /Astro/, replacement: 'Astro' }
+  ];
+
+  let normalized = tech;
+  for (const { pattern, replacement } of versionPatterns) {
+    if (pattern.test(normalized)) {
+      normalized = replacement;
+      break;
+    }
+  }
+  return normalized;
 };
 
 const techCount: Record<string, number> = {};
 
 projects.forEach(project => {
   project.techStack.forEach(tech => {
-    techCount[tech] = (techCount[tech] || 0) + 1;
+    const normalizedTech = normalizeTechName(tech);
+    techCount[normalizedTech] = (techCount[normalizedTech] || 0) + 1;
   });
+  if (project.deploy) {
+    if (project.deploy.frontend) {
+      techCount[project.deploy.frontend] = (techCount[project.deploy.frontend] || 0) + 1;
+    }
+    if (project.deploy.backend) {
+      techCount[project.deploy.backend] = (techCount[project.deploy.backend] || 0) + 1;
+    }
+    if (project.deploy.database) {
+      techCount[project.deploy.database] = (techCount[project.deploy.database] || 0) + 1;
+    }
+  }
 });
 
 const categoriesMap: Record<string, Record<string, number>> = {};
 
 Object.entries(techCount).forEach(([tech, count]) => {
-  const category = CATEGORY_MAPPING[tech] || 'Other';
+  const category = CATEGORY_MAPPING[tech] || 'Misc Library';
   if (!categoriesMap[category]) {
     categoriesMap[category] = {};
   }
@@ -118,9 +170,18 @@ const techCategories: TechCategory[] = Object.entries(categoriesMap).map(([categ
     }))
     .sort((a, b) => b.count - a.count)
 })).sort((a, b) => {
-  const order = ['Frontend', 'UI Frameworks', 'Animations', 'Styling', 'Internationalization', 'Backend', 'Backend Runtime', 'Database', 'Storage', 'Authentication', 'Real-time', 'Security', 'Documentation', 'Math Rendering', 'State Management', 'Performance', 'Tools', 'Runtime', 'Game Engine', 'Assets', 'Games', 'Other'];
+  const order = ['Languages', 'Frontend', 'Backend', 'Database', 'Authentication', 'UI Frameworks', 'Runtime', 'Deploy', 'Misc Library'];
   return order.indexOf(a.category) - order.indexOf(b.category);
 });
+
+const isWideCategory = (category: string): boolean => {
+  return category === 'Misc Library';
+};
+
+const getGridSpan = (category: string): string => {
+  if (category === 'Misc Library') return '1 / -1';
+  return 'span 1';
+};
 ---
 
 <section id="tech-stack" class="tech-stack pixel-scanline">
@@ -151,13 +212,13 @@ const techCategories: TechCategory[] = Object.entries(categoriesMap).map(([categ
     {techCategories.length > 0 ? (
       <div class="tech-container">
         {techCategories.map((category, catIndex) => (
-          <div class="tech-category" style={`animation-delay: ${catIndex * 0.15}s`}>
+          <div class={`tech-category ${category.category === 'Misc Library' ? 'wide-category' : ''}`} style={`animation-delay: ${catIndex * 0.15}s; grid-column: ${getGridSpan(category.category)}`}>
             <h3 class="category-title">
               <span class="category-icon"></span>
               {category.category}
             </h3>
             
-            <div class="tech-grid">
+            <div class={`tech-grid ${category.category === 'Misc Library' ? 'wide-grid' : ''}`}>
               {category.technologies.map((tech, techIndex) => (
                 <div class="tech-item" style={`animation-delay: ${catIndex * 0.15 + techIndex * 0.05}s`}>
                   <span class="tech-dot" style={`background: ${tech.color}; box-shadow: 0 0 8px ${tech.color}`}></span>
@@ -270,20 +331,19 @@ const techCategories: TechCategory[] = Object.entries(categoriesMap).map(([categ
 
   .tech-container {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, 1fr);
     gap: 48px;
   }
 
   @media (min-width: 768px) {
     .tech-container {
-      grid-template-columns: repeat(2, 1fr);
       gap: 56px;
     }
   }
 
   @media (min-width: 1200px) {
     .tech-container {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 64px;
     }
   }
@@ -336,6 +396,16 @@ const techCategories: TechCategory[] = Object.entries(categoriesMap).map(([categ
     display: grid;
     grid-template-columns: 1fr;
     gap: 12px;
+  }
+
+  .tech-grid.wide-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    .tech-grid.wide-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
   }
 
   .tech-item {
@@ -424,6 +494,7 @@ const techCategories: TechCategory[] = Object.entries(categoriesMap).map(([categ
     }
 
     .tech-container {
+      grid-template-columns: repeat(2, 1fr);
       gap: 32px;
     }
 
@@ -452,6 +523,10 @@ const techCategories: TechCategory[] = Object.entries(categoriesMap).map(([categ
 
     .deco-line {
       width: 30px;
+    }
+
+    .tech-container {
+      grid-template-columns: 1fr;
     }
 
     .category-title {

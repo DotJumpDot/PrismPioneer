@@ -2,13 +2,27 @@
 import Layout from '@/layouts/Landing.astro';
 import RainbowDivider from '@/components/Landing/RainbowDivider.astro';
 
-const skills = [
-  { name: 'TypeScript', level: 90, color: '#007ACC' },
-  { name: 'React', level: 85, color: '#61DAFB' },
-  { name: 'Astro', level: 80, color: '#FF5D01' },
-  { name: 'Node.js', level: 75, color: '#339933' },
-  { name: 'AI/ML', level: 70, color: '#9400D3' },
-  { name: 'CSS/Tailwind', level: 85, color: '#38B2AC' }
+const skillCategories = [
+  {
+    title: 'Languages',
+    icon: '💻',
+    skills: ['TypeScript', 'Python', 'HTML', 'CSS']
+  },
+  {
+    title: 'Frontend',
+    icon: '🎨',
+    skills: ['NextJS', 'Vue', 'Svelte']
+  },
+  {
+    title: 'Backend',
+    icon: '⚙️',
+    skills: ['NestJS', 'ElysiaJS', 'FastAPI']
+  },
+  {
+    title: 'Database',
+    icon: '🗄️',
+    skills: ['PostgreSQL', 'MySQL', 'MongoDB', 'SQLite']
+  }
 ];
 
 const experience = [
@@ -37,13 +51,27 @@ const experience = [
   <section class="about-page pixel-scanline">
     <div class="about-hero">
       <div class="container">
+        <div class="profile-avatar">
+          <div class="avatar-glow"></div>
+          <span class="avatar-text">DJD</span>
+        </div>
+        <div class="header-decoration">
+          <span class="deco-line"></span>
+          <span class="deco-dot"></span>
+          <span class="deco-line"></span>
+        </div>
+        
         <div class="hero-content">
-          <div class="profile-avatar">
-            <div class="avatar-glow"></div>
-            <span class="avatar-text">DJD</span>
-          </div>
-          <h1 class="about-title rainbow-text neon-glow">ABOUT ME</h1>
+          <h1 class="about-title">
+            <span class="title-main neon-glow">ABOUT ME</span>
+          </h1>
           <p class="about-subtitle">Creative Developer • AI Enthusiast • Problem Solver</p>
+        </div>
+        
+        <div class="header-decoration">
+          <span class="deco-line"></span>
+          <span class="deco-dot"></span>
+          <span class="deco-line"></span>
         </div>
       </div>
     </div>
@@ -85,16 +113,18 @@ const experience = [
 
           <aside class="side-info">
             <section class="side-section skills-card">
-              <h3 class="side-title">SKILLS</h3>
-              <div class="skills-list">
-                {skills.map(skill => (
-                  <div class="skill-item">
-                    <div class="skill-info">
-                      <span class="skill-name">{skill.name}</span>
-                      <span class="skill-percent">{skill.level}%</span>
+              <h3 class="side-title">COMFORT SKILLS</h3>
+              <div class="skills-categories">
+                {skillCategories.map(category => (
+                  <div class="skill-category">
+                    <div class="category-header">
+                      <span class="category-icon">{category.icon}</span>
+                      <span class="category-title">{category.title}</span>
                     </div>
-                    <div class="skill-bar-bg">
-                      <div class="skill-bar-fill" style={`width: ${skill.level}%; background: ${skill.color};`}></div>
+                    <div class="category-skills">
+                      {category.skills.map(skill => (
+                        <span class="skill-tag">{skill}</span>
+                      ))}
                     </div>
                   </div>
                 ))}
@@ -136,6 +166,35 @@ const experience = [
     background: linear-gradient(180deg, #1a1a2e 0%, #0a0a15 100%);
   }
 
+  .header-decoration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin: 24px 0;
+  }
+
+  .deco-line {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #9400D3, transparent);
+    opacity: 0.6;
+  }
+
+  .deco-dot {
+    width: 8px;
+    height: 8px;
+    background: #9400D3;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #9400D3, 0 0 20px #9400D3;
+    animation: dotPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes dotPulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.2); opacity: 1; }
+  }
+
   .profile-avatar {
     position: relative;
     width: 120px;
@@ -172,9 +231,38 @@ const experience = [
 
   .about-title {
     font-family: 'Press Start 2P', cursive;
-    font-size: clamp(32px, 6vw, 56px);
     margin-bottom: 24px;
-    letter-spacing: 2px;
+  }
+
+  .title-main {
+    display: block;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: bold;
+    line-height: 1.2;
+    color: #fff;
+    text-shadow: 
+      0 0 10px #9400D3,
+      0 0 20px #9400D3,
+      0 0 30px #9400D3;
+  }
+
+  @keyframes neonGlow {
+    0%, 100% { 
+      text-shadow: 
+        0 0 10px #9400D3,
+        0 0 20px #9400D3,
+        0 0 30px #9400D3;
+    }
+    50% { 
+      text-shadow: 
+        0 0 15px #9400D3,
+        0 0 30px #9400D3,
+        0 0 45px #9400D3;
+    }
+  }
+
+  .neon-glow {
+    animation: neonGlow 2s ease-in-out infinite;
   }
 
   .about-subtitle {
@@ -302,41 +390,60 @@ const experience = [
     letter-spacing: 1px;
   }
 
-  .skills-list {
+  .skills-categories {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 24px;
   }
 
-  .skill-info {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 8px;
-  }
-
-  .skill-name {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 10px;
-    color: #ccc;
-  }
-
-  .skill-percent {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 9px;
-    color: #666;
-  }
-
-  .skill-bar-bg {
-    height: 8px;
+  .skill-category {
     background: #0a0a15;
-    border-radius: 4px;
-    overflow: hidden;
+    border-radius: 8px;
+    padding: 16px;
+    border: 1px solid #1a1a2e;
   }
 
-  .skill-bar-fill {
-    height: 100%;
+  .category-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .category-icon {
+    font-size: 16px;
+  }
+
+  .category-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 11px;
+    color: #9400D3;
+    letter-spacing: 1px;
+  }
+
+  .category-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .skill-tag {
+    display: inline-block;
+    padding: 6px 12px;
+    background: #1a1a2e;
+    border: 1px solid #2a2a3e;
     border-radius: 4px;
-    transition: width 1s ease-out;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 8px;
+    color: #ccc;
+    transition: all 0.3s ease;
+  }
+
+  .skill-tag:hover {
+    background: #9400D3;
+    color: #fff;
+    border-color: #9400D3;
+    transform: translateY(-1px);
   }
 
   .contact-links {
@@ -377,12 +484,22 @@ const experience = [
   }
 
   @media (max-width: 768px) {
-    .about-hero {
-      padding: 60px 0 40px;
+    .header-decoration {
+      gap: 12px;
+      margin: 16px 0;
     }
 
-    .about-title {
-      font-size: 28px;
+    .deco-line {
+      width: 40px;
+    }
+
+    .deco-dot {
+      width: 6px;
+      height: 6px;
+    }
+
+    .about-hero {
+      padding: 60px 0 40px;
     }
 
     .exp-header {

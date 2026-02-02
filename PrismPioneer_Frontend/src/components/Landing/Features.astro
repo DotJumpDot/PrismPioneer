@@ -3,7 +3,14 @@ import PixelIcon from './PixelIcon.astro';
 import SectionHeader from './SectionHeader.astro';
 import PixelSprite from './PixelSprite.astro';
 
-const features = [
+interface Feature {
+  icon: 'gamepad' | 'star' | 'trophy' | 'coin' | 'heart' | 'lightning' | 'music' | 'settings';
+  title: string;
+  description: string;
+  color: string;
+}
+
+const features: Feature[] = [
   {
     icon: 'gamepad',
     title: 'Classic Gaming',
