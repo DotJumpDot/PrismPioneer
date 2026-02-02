@@ -9,13 +9,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- User authentication system with JWT tokens
-- API key authentication middleware
-- Comprehensive user CRUD operations
-- Password hashing with bcrypt
-- Input validation and error handling
-- Swagger API documentation
-- CORS support for cross-origin requests
+- Dynamic GitHub project integration for Work Highlights section
+- Automated Tech Stack visualization from GitHub repositories
+- Mini Profile section with navigation to About page
+- Three distinct scrollable blocks: Work Highlights, Tech Stack, Mini Profile
+- Real-time project data fetching with error handling
+- Color-coded technology badges with mini legends
+- Responsive design with smooth scrolling behavior
+- Updated project data with accurate GitHub repository information
+- Header redesign with DotJumpDot branding and Prism Pioneer subtitle
 
 ### Changed
 

@@ -12,7 +12,9 @@ This document describes the AI agents configured for the PrismPioneer project.
   - Database schema design
   - API development
   - Frontend component development
-- **Frameworks**: Astro, ElysiaJS, TypeScript, Node.js
+  - GitHub API integration
+  - Dynamic content generation
+- **Frameworks**: Astro 5, ElysiaJS, TypeScript, Node.js
 - **Tools**: File operations, command execution, code search
 
 ## Agent Guidelines
@@ -28,12 +30,14 @@ This document describes the AI agents configured for the PrismPioneer project.
 - Implement proper error handling and validation
 
 ### Frontend Development
-- Follow Astro framework conventions
-- Implement responsive design with Tailwind CSS
+- Follow Astro 5 framework conventions
+- Implement responsive design with CSS-in-JS or inline styles
 - Use TypeScript for type safety
 - Optimize for performance and SEO
 - Ensure accessibility standards
 - Use modern JavaScript/TypeScript patterns
+- Implement smooth scrolling behavior
+- Create dynamic components with server-side rendering
 
 ### Code Quality
 - Write clean, readable code

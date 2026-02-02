@@ -1,0 +1,398 @@
+---
+import { projects } from '@/data/projects';
+
+const LANGUAGE_COLORS: Record<string, string> = {
+  TypeScript: '#007ACC',
+  JavaScript: '#F7DF1E',
+  HTML: '#E34F26',
+  HTML5: '#E34F26',
+  CSS: '#1572B6',
+  Svelte: '#FF3E00',
+  'Svelte 5': '#FF3E00',
+  ElysiaJS: '#FF3E00',
+  Bun: '#FBF0DF',
+  PostgreSQL: '#336791',
+  Supabase: '#3ECF8D',
+  JWT: '#000000',
+  WebSocket: '#F7DF1E',
+  CORS: '#009688',
+  Swagger: '#85EA2D',
+  i18n: '#E10098',
+  KaTeX: '#00C8D3',
+  'Next.js 16': '#000000',
+  'Next.js': '#000000',
+  'React 19': '#61DAFB',
+  React: '#61DAFB',
+  'Mantine UI': '#339AF0',
+  'Ant Design': '#1890FF',
+  'Framer Motion': '#FF0080',
+  Zustand: '#20A7C1',
+  'next-intl': '#00B4D8',
+  'Tailwind CSS 4': '#38B2AC',
+  'Tailwind CSS': '#38B2AC',
+  Turbo: '#000000',
+  'VS Code API': '#007ACC',
+  'VS Code': '#007ACC',
+  'Node.js': '#339933',
+  simpleGame: '#E34F26',
+  'simpleGame.js': '#E34F26',
+  'PNG sprites': '#E34F26',
+  'MP3 audio': '#F7DF1E',
+  'Puzzle games': '#FFA500',
+  'Astro 5': '#FF5D01',
+  Astro: '#FF5D01'
+};
+
+const featuredProjects = projects.filter(project => project.featured);
+---
+
+<section id="work-highlights" class="work-highlights pixel-scanline">
+  <div class="highlights-background"></div>
+  <div class="container">
+    <div class="highlights-header">
+      <div class="header-decoration">
+        <span class="deco-line"></span>
+        <span class="deco-dot"></span>
+        <span class="deco-line"></span>
+      </div>
+      
+      <h2 class="highlights-title">
+        <span class="title-main neon-glow">WORK HIGHLIGHTS</span>
+      </h2>
+      
+      <p class="highlights-subtitle">
+        Selected projects showcasing technical expertise and creative problem-solving
+      </p>
+      
+      <div class="header-decoration">
+        <span class="deco-line"></span>
+        <span class="deco-dot"></span>
+        <span class="deco-line"></span>
+      </div>
+    </div>
+
+    <div class="projects-container">
+      {featuredProjects.map((project, index) => (
+        <div class="project-card" style={`animation-delay: ${index * 0.1}s`}>
+          <div class="project-header">
+            <h3 class="project-name">{project.title}</h3>
+            <span class="project-date">{project.date}</span>
+          </div>
+          
+          <p class="project-description">{project.description}</p>
+          
+          <div class="project-meta">
+            <div class="project-languages">
+              {project.techStack.slice(0, 3).map(tech => (
+                <div class="language-badge" style={`--lang-color: ${LANGUAGE_COLORS[tech] || '#888888'}`}>
+                  <span class="lang-dot"></span>
+                  <span class="lang-name">{tech}</span>
+                </div>
+              ))}
+            </div>
+            
+            <a href={project.githubUrl || '#'} target="_blank" rel="noopener noreferrer" class="project-link">
+              <svg class="link-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+              <span>View on GitHub</span>
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .work-highlights {
+    position: relative;
+    padding: 100px 0;
+    background: #0a0a15;
+    overflow: hidden;
+  }
+
+  .highlights-background {
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse at 30% 20%, rgba(255, 0, 128, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 80%, rgba(0, 191, 255, 0.08) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .highlights-header {
+    text-align: center;
+    margin-bottom: 80px;
+    position: relative;
+  }
+
+  .header-decoration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .deco-line {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #9400D3, transparent);
+  }
+
+  .deco-dot {
+    width: 8px;
+    height: 8px;
+    background: #9400D3;
+    border-radius: 50%;
+    animation: dotPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes dotPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.3); opacity: 0.7; }
+  }
+
+  .highlights-title {
+    font-family: 'Press Start 2P', cursive;
+    margin-bottom: 24px;
+  }
+
+  .title-main {
+    display: block;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: bold;
+    line-height: 1.2;
+    color: #fff;
+    text-shadow: 
+      0 0 10px #9400D3,
+      0 0 20px #9400D3,
+      0 0 30px #9400D3;
+  }
+
+  @keyframes neonGlow {
+    0%, 100% { 
+      text-shadow: 
+        0 0 10px #9400D3,
+        0 0 20px #9400D3,
+        0 0 30px #9400D3;
+    }
+    50% { 
+      text-shadow: 
+        0 0 20px #9400D3,
+        0 0 40px #9400D3,
+        0 0 60px #9400D3;
+    }
+  }
+
+  .highlights-subtitle {
+    font-size: clamp(13px, 2vw, 15px);
+    color: #999;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.8;
+  }
+
+  .projects-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 768px) {
+    .projects-container {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+    }
+  }
+
+  .project-card {
+    background: #151525;
+    border: 1px solid #2a2a3e;
+    border-radius: 16px;
+    padding: 32px;
+    transition: all 0.3s ease;
+    animation: cardFadeIn 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  @keyframes cardFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .project-card:hover {
+    border-color: #9400D3;
+    box-shadow: 0 8px 32px rgba(148, 0, 211, 0.2);
+    transform: translateY(-4px);
+  }
+
+  .project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+    gap: 16px;
+  }
+
+  .project-name {
+    font-family: 'Press Start 2P', cursive;
+    font-size: clamp(14px, 2.5vw, 16px);
+    color: #fff;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .project-date {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 9px;
+    color: #666;
+    white-space: nowrap;
+  }
+
+  .project-description {
+    font-size: 14px;
+    color: #bbb;
+    line-height: 1.8;
+    margin: 0 0 24px 0;
+  }
+
+  .project-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .project-languages {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .language-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+  }
+
+  .language-badge:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--lang-color);
+  }
+
+  .lang-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--lang-color);
+    flex-shrink: 0;
+    box-shadow: 0 0 8px var(--lang-color);
+  }
+
+  .lang-name {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 9px;
+    color: #ccc;
+  }
+
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #9400D3, #6B21A8);
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    transition: all 0.2s ease;
+    align-self: flex-start;
+  }
+
+  .project-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(148, 0, 211, 0.4);
+  }
+
+  .link-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  @media (max-width: 768px) {
+    .work-highlights {
+      padding: 60px 0;
+    }
+
+    .highlights-header {
+      margin-bottom: 48px;
+    }
+
+    .deco-line {
+      width: 40px;
+    }
+
+    .highlights-subtitle {
+      font-size: 12px;
+    }
+
+    .projects-container {
+      gap: 24px;
+    }
+
+    .project-card {
+      padding: 24px;
+    }
+
+    .project-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .project-date {
+      margin-top: 8px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .highlights-title {
+      margin-bottom: 16px;
+    }
+
+    .header-decoration {
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .deco-line {
+      width: 30px;
+    }
+
+    .project-description {
+      font-size: 13px;
+    }
+
+    .language-badge {
+      padding: 6px 12px;
+    }
+
+    .lang-name {
+      font-size: 8px;
+    }
+  }
+</style>

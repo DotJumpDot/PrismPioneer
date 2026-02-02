@@ -1,0 +1,63 @@
+---
+interface Props {
+  height?: number;
+  animate?: boolean;
+}
+
+const { height = 8, animate = true } = Astro.props;
+---
+
+<div class={`rainbow-divider ${animate ? 'animate' : ''}`} style={`height: ${height}px;`}>
+  <div class="pixel-block"></div>
+  <div class="pixel-block"></div>
+  <div class="pixel-block"></div>
+  <div class="pixel-block"></div>
+  <div class="pixel-block"></div>
+  <div class="pixel-block"></div>
+  <div class="pixel-block"></div>
+</div>
+
+<style>
+  .rainbow-divider {
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .pixel-block {
+    flex: 1;
+    height: 100%;
+  }
+
+  .pixel-block:nth-child(1) { background: #FF0000; }
+  .pixel-block:nth-child(2) { background: #FF7F00; }
+  .pixel-block:nth-child(3) { background: #FFFF00; }
+  .pixel-block:nth-child(4) { background: #00FF00; }
+  .pixel-block:nth-child(5) { background: #0000FF; }
+  .pixel-block:nth-child(6) { background: #4B0082; }
+  .pixel-block:nth-child(7) { background: #9400D3; }
+
+  .rainbow-divider.animate .pixel-block {
+    animation: rainbowWave 2s linear infinite;
+  }
+
+  @keyframes rainbowWave {
+    0%, 100% { filter: hue-rotate(0deg); transform: scaleY(1); }
+    50% { filter: hue-rotate(180deg); transform: scaleY(1.5); }
+  }
+
+  .rainbow-divider::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 4px,
+      rgba(0, 0, 0, 0.1) 4px,
+      rgba(0, 0, 0, 0.1) 8px
+    );
+    pointer-events: none;
+  }
+</style>

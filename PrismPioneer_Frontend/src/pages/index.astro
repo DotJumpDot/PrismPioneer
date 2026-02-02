@@ -1,28 +1,26 @@
 ---
 import Layout from '@/layouts/Landing.astro';
+import Hero from '@/components/Portfolio/Hero.astro';
+import WorkHighlights from '@/components/Portfolio/WorkHighlights.astro';
+import TechStack from '@/components/Portfolio/TechStack.astro';
+import MiniProfile from '@/components/Portfolio/MiniProfile.astro';
+import RainbowDivider from '@/components/Landing/RainbowDivider.astro';
 ---
 
-<Layout title="Home">
-  <section class="text-center py-20">
-    <h1 class="text-5xl font-bold mb-6">
-      Welcome to PrismPioneer
-    </h1>
-    <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-      Exploring technology, building innovative solutions, and sharing knowledge through code and creativity.
-    </p>
-    <div class="flex justify-center space-x-4">
-      <a 
-        href="/portfolio" 
-        class="bg-primary-600 text-white px-8 py-3 rounded-lg hover:bg-primary-700 transition"
-      >
-        View Portfolio
-      </a>
-      <a 
-        href="/blog" 
-        class="border border-primary-600 text-primary-600 px-8 py-3 rounded-lg hover:bg-primary-50 transition"
-      >
-        Read Blog
-      </a>
-    </div>
-  </section>
+<Layout title="Home" description="DotJumpDot - Prism Pioneer - Building innovative solutions in AI, web development, and user experience">
+  <Hero />
+  <RainbowDivider height={6} animate={true} />
+  <WorkHighlights />
+  <RainbowDivider height={6} animate={true} />
+  <TechStack />
+  <RainbowDivider height={6} animate={true} />
+  <MiniProfile />
+  <RainbowDivider height={6} animate={true} />
 </Layout>
+
+<style is:global>
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+  }
+</style>

@@ -1,0 +1,278 @@
+---
+const navItems = [
+  { href: '/', label: 'Home' },
+  { href: '/news', label: 'News' },
+  { href: '/about', label: 'About Me' }
+];
+---
+
+<header class="pixel-header pixel-scanline">
+  <div class="container">
+    <div class="header-content">
+      <a href="/" class="logo">
+        <span class="logo-accent">PRISM PIONEER</span>
+      </a>
+      
+      <nav class="nav-desktop">
+        {navItems.map(item => (
+          <a href={item.href} class="nav-link">
+            <span class="nav-pixel"></span>
+            <span class="nav-text">{item.label}</span>
+          </a>
+        ))}
+        <a href="https://github.com/DotJumpDot" target="_blank" rel="noopener noreferrer" class="nav-link github-link" aria-label="GitHub Profile">
+          <span class="nav-pixel"></span>
+          <span class="nav-text">GitHub</span>
+          <svg class="github-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+      </nav>
+
+      <button class="mobile-menu-btn" aria-label="Toggle menu">
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+      </button>
+    </div>
+  </div>
+
+  <nav class="nav-mobile">
+    {navItems.map(item => (
+      <a href={item.href} class="nav-link-mobile">
+        {item.label}
+      </a>
+    ))}
+    <a href="https://github.com/DotJumpDot" target="_blank" rel="noopener noreferrer" class="nav-link-mobile">
+      GitHub
+    </a>
+  </nav>
+</header>
+
+<style>
+  .pixel-header {
+    background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+    border-bottom: 4px solid;
+    border-image: linear-gradient(90deg, #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #4B0082, #9400D3) 1;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+  }
+
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+  }
+
+  .logo {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .logo-text {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 20px;
+    color: #FFFFFF;
+    text-shadow: 
+      2px 2px 0 #FF0000,
+      4px 4px 0 #FF7F00,
+      6px 6px 0 #FFFF00;
+    animation: logoFloat 3s ease-in-out infinite;
+  }
+
+  .logo-accent {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 20px;
+    background: linear-gradient(90deg, #00FF00, #0000FF, #9400D3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: rainbowText 2s linear infinite;
+  }
+
+  @keyframes logoFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+  }
+
+  @keyframes rainbowText {
+    0%, 100% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+  }
+
+  .nav-desktop {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+  }
+
+  .nav-link {
+    position: relative;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 11px;
+    color: #CCCCCC;
+    transition: color 0.2s ease;
+    padding: 8px 12px;
+    border-radius: 4px;
+  }
+
+  .nav-link:hover {
+    color: #FFD700;
+    background: rgba(255, 215, 0, 0.1);
+  }
+
+  .nav-link.github-link {
+    gap: 6px;
+  }
+
+  .nav-link.github-link:hover {
+    color: #FFFFFF;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .github-icon {
+    width: 18px;
+    height: 18px;
+    fill: #CCCCCC;
+    transition: fill 0.2s ease;
+  }
+
+  .nav-link:hover .github-icon {
+    fill: #FFD700;
+  }
+
+  .nav-link.github-link:hover .github-icon {
+    fill: #FFFFFF;
+  }
+
+  .nav-pixel {
+    width: 6px;
+    height: 6px;
+    background: #FFD700;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    animation: pixelPulse 1s ease infinite;
+  }
+
+  .nav-link:hover .nav-pixel {
+    opacity: 1;
+  }
+
+  @keyframes pixelPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+  }
+
+  .nav-text {
+    transition: transform 0.1s ease;
+  }
+
+  .nav-link:hover .nav-text {
+    animation: textShake 0.3s ease;
+  }
+
+  @keyframes textShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-2px); }
+    75% { transform: translateX(2px); }
+  }
+
+  .mobile-menu-btn {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+  }
+
+  .menu-bar {
+    width: 32px;
+    height: 4px;
+    background: #FFFFFF;
+    transition: all 0.3s ease;
+  }
+
+  .nav-mobile {
+    display: none;
+    background: #0a0a15;
+    padding: 16px;
+    border-top: 2px solid #1a1a2e;
+  }
+
+  .nav-link-mobile {
+    display: block;
+    padding: 16px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
+    color: #CCCCCC;
+    text-decoration: none;
+    border-bottom: 2px solid #1a1a2e;
+    transition: all 0.2s ease;
+  }
+
+  .nav-link-mobile:hover {
+    background: linear-gradient(90deg, #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF);
+    color: #FFFFFF;
+    padding-left: 24px;
+  }
+
+  @media (max-width: 1024px) {
+    .nav-desktop {
+      gap: 24px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .nav-desktop {
+      display: none;
+    }
+
+    .mobile-menu-btn {
+      display: flex;
+    }
+
+    .logo-text,
+    .logo-accent {
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .logo-text,
+    .logo-accent {
+      font-size: 14px;
+    }
+  }
+</style>
+
+<script>
+  const menuBtn = document.querySelector('.mobile-menu-btn') as HTMLElement | null;
+  const navMobile = document.querySelector('.nav-mobile') as HTMLElement | null;
+
+  if (menuBtn && navMobile) {
+    let isMenuOpen = false;
+
+    menuBtn.addEventListener('click', () => {
+      isMenuOpen = !isMenuOpen;
+      navMobile.style.display = isMenuOpen ? 'block' : 'none';
+      
+      const bars = menuBtn.querySelectorAll('.menu-bar');
+      (bars[0] as HTMLElement).style.transform = isMenuOpen ? 'rotate(45deg) translate(8px, 8px)' : '';
+      (bars[1] as HTMLElement).style.opacity = isMenuOpen ? '0' : '1';
+      (bars[2] as HTMLElement).style.transform = isMenuOpen ? 'rotate(-45deg) translate(8px, -8px)' : '';
+    });
+  }
+</script>

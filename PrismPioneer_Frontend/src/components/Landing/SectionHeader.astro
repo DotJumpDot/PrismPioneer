@@ -1,0 +1,76 @@
+---
+interface Props {
+  prefix: string;
+  title: string;
+  subtitle?: string;
+  align?: 'left' | 'center' | 'right';
+}
+
+const { prefix, title, subtitle, align = 'center' } = Astro.props;
+
+const alignClasses = {
+  left: 'text-left',
+  center: 'text-center mx-auto',
+  right: 'text-right ml-auto'
+};
+---
+
+<div class={`section-header ${alignClasses[align]}`}>
+  <h2 class="section-title">
+    <span class="title-prefix">{prefix}</span>
+    <span class="title-main rainbow-text neon-glow">{title}</span>
+  </h2>
+  {subtitle && <p class="section-subtitle">{subtitle}</p>}
+</div>
+
+<style>
+  .section-header {
+    margin-bottom: 64px;
+    max-width: 800px;
+  }
+
+  .section-title {
+    font-family: 'Press Start 2P', cursive;
+    margin-bottom: 16px;
+  }
+
+  .title-prefix {
+    display: block;
+    font-size: 14px;
+    color: #666;
+    letter-spacing: 4px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+
+  .title-main {
+    display: block;
+    font-size: clamp(24px, 5vw, 48px);
+    text-transform: uppercase;
+  }
+
+  .section-subtitle {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
+    color: #999;
+    line-height: 1.8;
+  }
+
+  @media (max-width: 768px) {
+    .section-header {
+      margin-bottom: 48px;
+    }
+
+    .title-prefix {
+      font-size: 12px;
+    }
+
+    .title-main {
+      font-size: 24px;
+    }
+
+    .section-subtitle {
+      font-size: 10px;
+    }
+  }
+</style>

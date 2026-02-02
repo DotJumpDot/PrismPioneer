@@ -1,0 +1,538 @@
+---
+const footerLinks = [
+  {
+    title: 'Games',
+    links: [
+      { label: 'All Games', href: '#games' },
+      { label: 'New Releases', href: '#' },
+      { label: 'Top Rated', href: '#' },
+      { label: 'Classics', href: '#' }
+    ]
+  },
+  {
+    title: 'Community',
+    links: [
+      { label: 'Leaderboards', href: '#' },
+      { label: 'Forums', href: '#' },
+      { label: 'Events', href: '#' },
+      { label: 'Support', href: '#' }
+    ]
+  },
+  {
+    title: 'Company',
+    links: [
+      { label: 'About Us', href: '#about' },
+      { label: 'Careers', href: '#' },
+      { label: 'Press', href: '#' },
+      { label: 'Contact', href: '#contact' }
+    ]
+  },
+  {
+    title: 'Legal',
+    links: [
+      { label: 'Privacy', href: '#' },
+      { label: 'Terms', href: '#' },
+      { label: 'Cookies', href: '#' },
+      { label: 'DMCA', href: '#' }
+    ]
+  }
+];
+
+const socialLinks = [
+  { name: 'Twitter', icon: '𝕏', href: '#' },
+  { name: 'Discord', icon: '💬', href: '#' },
+  { name: 'GitHub', icon: '⌘', href: '#' },
+  { name: 'YouTube', icon: '▶', href: '#' }
+];
+---
+
+<footer class="pixel-footer pixel-scanline">
+  <div class="footer-decorations">
+    <div class="deco-pixel"></div>
+    <div class="deco-pixel"></div>
+    <div class="deco-pixel"></div>
+  </div>
+  
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <span class="logo-accent">PRISM PIONEER</span>
+        </div>
+        <p class="footer-tagline">
+          Your destination for authentic 8-bit retro gaming experiences.
+        </p>
+        <div class="social-links">
+          {socialLinks.map(link => (
+            <a href={link.href} class="social-link" title={link.name}>
+              <span class="social-icon">{link.icon}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <div class="footer-links-container">
+        {footerLinks.map(section => (
+          <div class="footer-links">
+            <h4 class="links-title pixel-font">{section.title}</h4>
+            <ul class="links-list">
+              {section.links.map(link => (
+                <li class="links-item">
+                  <a href={link.href} class="links-anchor">
+                    <span class="link-pixel"></span>
+                    <span class="link-text">{link.label}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="footer-arcade">
+      <div class="arcade-frame">
+        <div class="arcade-screen flicker">
+          <div class="screen-text">
+            <span class="line-1">GAME OVER</span>
+            <span class="line-2">INSERT COIN</span>
+            <span class="line-3">TO CONTINUE</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="copyright">
+        <p class="copyright-text pixel-font">
+          © 2026 DOTJUMPDOT. ALL RIGHTS RESERVED.
+        </p>
+        <p class="made-with pixel-font">
+          MADE WITH <span class="heart">♥</span> FOR RETRO GAMING
+        </p>
+      </div>
+
+      <div class="footer-credits">
+        <div class="credit-badge">
+          <span class="badge-text pixel-font">8-BIT</span>
+        </div>
+        <div class="credit-badge">
+          <span class="badge-text pixel-font">ARCADE</span>
+        </div>
+        <div class="credit-badge">
+          <span class="badge-text pixel-font">RETRO</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .pixel-footer {
+    position: relative;
+    background: linear-gradient(180deg, #0a0a15 0%, #05050a 100%);
+    border-top: 4px solid;
+    border-image: linear-gradient(90deg, #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #4B0082, #9400D3) 1;
+    padding: 80px 0 32px;
+    overflow: hidden;
+  }
+
+  .footer-decorations {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .deco-pixel {
+    width: 12px;
+    height: 12px;
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    animation: decoFloat 3s ease-in-out infinite;
+  }
+
+  .deco-pixel:nth-child(2) {
+    animation-delay: 0.5s;
+    background: linear-gradient(135deg, #FF6B6B, #FF0000);
+  }
+
+  .deco-pixel:nth-child(3) {
+    animation-delay: 1s;
+    background: linear-gradient(135deg, #4ECDC4, #00FF00);
+  }
+
+  @keyframes decoFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .footer-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+    margin-bottom: 64px;
+  }
+
+  @media (min-width: 768px) {
+    .footer-content {
+      grid-template-columns: 1fr 2fr;
+      gap: 64px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .footer-content {
+      grid-template-columns: 1fr 3fr;
+      gap: 80px;
+    }
+  }
+
+  .footer-brand {
+    text-align: center;
+  }
+
+  @media (min-width: 768px) {
+    .footer-brand {
+      text-align: left;
+    }
+  }
+
+  .footer-logo {
+    margin-bottom: 24px;
+  }
+
+  .logo-text {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 20px;
+    color: #FFFFFF;
+    text-shadow: 
+      2px 2px 0 #FF0000,
+      4px 4px 0 #FF7F00,
+      6px 6px 0 #FFFF00;
+    display: inline-block;
+    animation: logoFloat 3s ease-in-out infinite;
+  }
+
+  @keyframes logoFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+  }
+
+  .logo-accent {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 20px;
+    background: linear-gradient(90deg, #00FF00, #0000FF, #9400D3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: rainbowText 2s linear infinite;
+  }
+
+  @keyframes rainbowText {
+    0%, 100% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+  }
+
+  .footer-tagline {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    color: #999;
+    line-height: 1.8;
+    margin-bottom: 24px;
+    max-width: 300px;
+  }
+
+  @media (min-width: 768px) {
+    .footer-tagline {
+      max-width: 100%;
+    }
+  }
+
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  @media (min-width: 768px) {
+    .social-links {
+      justify-content: flex-start;
+    }
+  }
+
+  .social-link {
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1a 100%);
+    border: 2px solid #2a2a3e;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    text-decoration: none;
+  }
+
+  .social-link:hover {
+    transform: translateY(-4px);
+    border-color: #FFD700;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+  }
+
+  .social-icon {
+    font-size: 18px;
+  }
+
+  .footer-links-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+
+  @media (min-width: 768px) {
+    .footer-links-container {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+    }
+  }
+
+  .footer-links {
+    text-align: center;
+  }
+
+  @media (min-width: 768px) {
+    .footer-links {
+      text-align: left;
+    }
+  }
+
+  .links-title {
+    font-size: 12px;
+    color: #FFD700;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  .links-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .links-item {
+    margin-bottom: 12px;
+  }
+
+  .links-anchor {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    color: #999;
+    transition: all 0.2s ease;
+  }
+
+  @media (min-width: 768px) {
+    .links-anchor {
+      justify-content: flex-start;
+    }
+  }
+
+  .links-anchor:hover {
+    color: #fff;
+    transform: translateX(4px);
+  }
+
+  .link-pixel {
+    width: 6px;
+    height: 6px;
+    background: #2a2a3e;
+    transition: all 0.2s ease;
+  }
+
+  .links-anchor:hover .link-pixel {
+    background: #FFD700;
+    box-shadow: 0 0 10px #FFD700;
+  }
+
+  .footer-arcade {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 64px;
+  }
+
+  .arcade-frame {
+    background: linear-gradient(180deg, #2a2a3e 0%, #1a1a2e 100%);
+    border: 8px solid #4a4a5e;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 
+      0 8px 0 #0a0a15,
+      0 16px 32px rgba(0, 0, 0, 0.5);
+  }
+
+  .arcade-screen {
+    width: 300px;
+    height: 80px;
+    background: #000;
+    border: 4px solid #333;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .screen-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    font-family: 'Press Start 2P', cursive;
+    color: #FF0000;
+  }
+
+  .line-1 {
+    font-size: 12px;
+    animation: textBlink 1s step-end infinite;
+  }
+
+  .line-2,
+  .line-3 {
+    font-size: 10px;
+    color: #FFD700;
+  }
+
+  @keyframes textBlink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+  }
+
+  @keyframes flicker {
+    0%, 100% { opacity: 1; }
+    92% { opacity: 1; }
+    93% { opacity: 0.8; }
+    94% { opacity: 1; }
+    95% { opacity: 0.9; }
+  }
+
+  .footer-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    padding-top: 32px;
+    border-top: 2px solid #1a1a2e;
+  }
+
+  @media (min-width: 768px) {
+    .footer-bottom {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+  }
+
+  .copyright {
+    text-align: center;
+  }
+
+  @media (min-width: 768px) {
+    .copyright {
+      text-align: left;
+    }
+  }
+
+  .copyright-text {
+    font-size: 10px;
+    color: #666;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+
+  .made-with {
+    font-size: 10px;
+    color: #999;
+  }
+
+  .heart {
+    color: #FF6B6B;
+    animation: heartBeat 1s ease infinite;
+  }
+
+  @keyframes heartBeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+  }
+
+  .footer-credits {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  @media (min-width: 768px) {
+    .footer-credits {
+      justify-content: flex-end;
+    }
+  }
+
+  .credit-badge {
+    padding: 8px 16px;
+    background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1a 100%);
+    border: 2px solid #2a2a3e;
+    border-radius: 4px;
+  }
+
+  .badge-text {
+    font-size: 10px;
+    color: #FFD700;
+    letter-spacing: 2px;
+  }
+
+  @media (max-width: 768px) {
+    .pixel-footer {
+      padding: 60px 0 24px;
+    }
+
+    .footer-logo .logo-text,
+    .footer-logo .logo-accent {
+      font-size: 16px;
+    }
+
+    .footer-tagline {
+      font-size: 8px;
+    }
+
+    .links-title {
+      font-size: 10px;
+    }
+
+    .links-anchor {
+      font-size: 8px;
+    }
+
+    .arcade-screen {
+      width: 100%;
+      max-width: 280px;
+      height: 70px;
+    }
+
+    .screen-text .line-1 {
+      font-size: 10px;
+    }
+
+    .screen-text .line-2,
+    .screen-text .line-3 {
+      font-size: 8px;
+    }
+  }
+</style>

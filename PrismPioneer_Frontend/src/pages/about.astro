@@ -1,67 +1,398 @@
 ---
 import Layout from '@/layouts/Landing.astro';
+import RainbowDivider from '@/components/Landing/RainbowDivider.astro';
+
+const skills = [
+  { name: 'TypeScript', level: 90, color: '#007ACC' },
+  { name: 'React', level: 85, color: '#61DAFB' },
+  { name: 'Astro', level: 80, color: '#FF5D01' },
+  { name: 'Node.js', level: 75, color: '#339933' },
+  { name: 'AI/ML', level: 70, color: '#9400D3' },
+  { name: 'CSS/Tailwind', level: 85, color: '#38B2AC' }
+];
+
+const experience = [
+  {
+    role: 'Senior Creative Developer',
+    company: 'Innovation Labs',
+    period: '2022 - Present',
+    description: 'Leading the development of AI-driven web platforms and creative toolsets. Implementing multi-model routing systems and performance-critical VS Code extensions.'
+  },
+  {
+    role: 'Full Stack Developer',
+    company: 'Tech Solutions Inc.',
+    period: '2020 - 2022',
+    description: 'Developed and maintained scalable full-stack applications using React, Node.js, and PostgreSQL. Optimized application performance and improved CI/CD pipelines.'
+  },
+  {
+    role: 'Frontend Developer',
+    company: 'Creative Studio',
+    period: '2018 - 2020',
+    description: 'Focused on creating immersive user experiences and interactive web animations. Collaborated with designers to translate complex visual concepts into pixel-perfect code.'
+  }
+];
 ---
 
-<Layout title="About">
-  <section class="py-8">
-    <h1 class="text-4xl font-bold mb-8">About Me</h1>
-    
-    <div class="prose max-w-none">
-      <div class="bg-white rounded-lg shadow-md p-8 mb-8">
-        <h2 class="text-2xl font-semibold mb-4">Welcome to PrismPioneer</h2>
-        <p class="text-gray-700 mb-4">
-          PrismPioneer is a modern portfolio and blog platform showcasing innovative projects 
-          and sharing insights about technology, development, and creative problem-solving.
-        </p>
-        <p class="text-gray-700 mb-4">
-          This project demonstrates the power of combining Astro's static site generation 
-          with Django's robust backend API, creating a seamless and performant web experience.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-        <div class="bg-white rounded-lg shadow-md p-6">
-          <h3 class="text-xl font-semibold mb-3">Tech Stack</h3>
-          <ul class="space-y-2 text-gray-700">
-            <li><strong>Frontend:</strong> Astro, TypeScript, Tailwind CSS</li>
-            <li><strong>Backend:</strong> Django, Django REST Framework</li>
-            <li><strong>Database:</strong> PostgreSQL (Supabase)</li>
-            <li><strong>API Documentation:</strong> drf-spectacular (Swagger)</li>
-          </ul>
-        </div>
-
-        <div class="bg-white rounded-lg shadow-md p-6">
-          <h3 class="text-xl font-semibold mb-3">Features</h3>
-          <ul class="space-y-2 text-gray-700">
-            <li>✓ Responsive design</li>
-            <li>✓ Fast page loads</li>
-            <li>✓ SEO optimized</li>
-            <li>✓ Interactive API documentation</li>
-            <li>✓ Dynamic content management</li>
-          </ul>
+<Layout title="About Me" description="Learn more about DotJumpDot - a creative developer specializing in AI, web development, and interactive tools.">
+  <section class="about-page pixel-scanline">
+    <div class="about-hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="profile-avatar">
+            <div class="avatar-glow"></div>
+            <span class="avatar-text">DJD</span>
+          </div>
+          <h1 class="about-title rainbow-text neon-glow">ABOUT ME</h1>
+          <p class="about-subtitle">Creative Developer • AI Enthusiast • Problem Solver</p>
         </div>
       </div>
+    </div>
 
-      <div class="bg-primary-50 rounded-lg p-8 text-center">
-        <h3 class="text-2xl font-semibold mb-4">Get in Touch</h3>
-        <p class="text-gray-700 mb-6">
-          Interested in collaborating or have a question? Feel free to reach out!
-        </p>
-        <div class="flex justify-center space-x-4">
-          <a 
-            href="mailto:contact@example.com" 
-            class="bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition"
-          >
-            Contact Me
-          </a>
-          <a 
-            href="/portfolio" 
-            class="border border-primary-600 text-primary-600 px-6 py-3 rounded-lg hover:bg-primary-50 transition"
-          >
-            View My Work
-          </a>
+    <RainbowDivider height={4} />
+
+    <div class="about-content">
+      <div class="container">
+        <div class="content-grid">
+          <div class="main-bio">
+            <section class="bio-section">
+              <h2 class="section-title">THE STORY</h2>
+              <div class="bio-text">
+                <p>Hello! I'm DotJumpDot, a passionate developer dedicated to building innovative solutions that push the boundaries of what's possible on the web.</p>
+                <p>My journey in development started with a fascination for interactive experiences and has evolved into a deep expertise in modern web technologies and AI integration. I believe that great software is a blend of technical excellence and creative vision.</p>
+                <p>Currently, I focus on building tools that enhance developer productivity—like my VS Code extensions—and exploring the potential of AI through platforms like Axiomancer.</p>
+              </div>
+            </section>
+
+            <section class="bio-section">
+              <h2 class="section-title">EXPERIENCE</h2>
+              <div class="experience-timeline">
+                {experience.map(item => (
+                  <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                      <div class="exp-header">
+                        <h3 class="exp-role">{item.role}</h3>
+                        <span class="exp-period">{item.period}</span>
+                      </div>
+                      <div class="exp-company">{item.company}</div>
+                      <p class="exp-desc">{item.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          </div>
+
+          <aside class="side-info">
+            <section class="side-section skills-card">
+              <h3 class="side-title">SKILLS</h3>
+              <div class="skills-list">
+                {skills.map(skill => (
+                  <div class="skill-item">
+                    <div class="skill-info">
+                      <span class="skill-name">{skill.name}</span>
+                      <span class="skill-percent">{skill.level}%</span>
+                    </div>
+                    <div class="skill-bar-bg">
+                      <div class="skill-bar-fill" style={`width: ${skill.level}%; background: ${skill.color};`}></div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            <section class="side-section contact-card">
+              <h3 class="side-title">CONNECT</h3>
+              <div class="contact-links">
+                <a href="mailto:contact@dotjumpdot.com" class="contact-btn email">
+                  <span class="btn-icon">📧</span>
+                  <span>Email Me</span>
+                </a>
+                <a href="https://github.com/DotJumpDot" target="_blank" rel="noopener noreferrer" class="contact-btn github">
+                  <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                  </svg>
+                  <span>GitHub</span>
+                </a>
+              </div>
+            </section>
+          </div>
         </div>
       </div>
     </div>
   </section>
 </Layout>
+
+<style>
+  .about-page {
+    background: #0a0a15;
+    min-height: 100vh;
+    padding-top: 80px;
+  }
+
+  .about-hero {
+    padding: 100px 0 60px;
+    text-align: center;
+    background: linear-gradient(180deg, #1a1a2e 0%, #0a0a15 100%);
+  }
+
+  .profile-avatar {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 32px;
+    background: #151525;
+    border: 4px solid #2a2a3e;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .avatar-glow {
+    position: absolute;
+    inset: -10px;
+    background: radial-gradient(circle, #9400D3 0%, transparent 70%);
+    opacity: 0.3;
+    animation: glowPulse 4s ease-in-out infinite;
+  }
+
+  @keyframes glowPulse {
+    0%, 100% { transform: scale(1); opacity: 0.3; }
+    50% { transform: scale(1.2); opacity: 0.5; }
+  }
+
+  .avatar-text {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 24px;
+    color: #fff;
+    z-index: 1;
+  }
+
+  .about-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: clamp(32px, 6vw, 56px);
+    margin-bottom: 24px;
+    letter-spacing: 2px;
+  }
+
+  .about-subtitle {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
+    color: #888;
+    letter-spacing: 1px;
+  }
+
+  .about-content {
+    padding: 80px 0 120px;
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+
+  @media (min-width: 1024px) {
+    .content-grid {
+      grid-template-columns: 2fr 1fr;
+    }
+  }
+
+  .section-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 32px;
+    padding-left: 16px;
+    border-left: 4px solid #9400D3;
+  }
+
+  .bio-section {
+    margin-bottom: 60px;
+  }
+
+  .bio-text p {
+    font-size: 16px;
+    color: #bbb;
+    line-height: 1.8;
+    margin-bottom: 24px;
+  }
+
+  .experience-timeline {
+    position: relative;
+    padding-left: 32px;
+  }
+
+  .experience-timeline::before {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #2a2a3e;
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 48px;
+  }
+
+  .timeline-marker {
+    position: absolute;
+    left: -32px;
+    top: 8px;
+    width: 10px;
+    height: 10px;
+    background: #9400D3;
+    border: 2px solid #0a0a15;
+    border-radius: 50%;
+    z-index: 1;
+  }
+
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .exp-role {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 14px;
+    color: #fff;
+  }
+
+  .exp-period {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    color: #666;
+  }
+
+  .exp-company {
+    font-size: 14px;
+    color: #9400D3;
+    font-weight: bold;
+    margin-bottom: 12px;
+  }
+
+  .exp-desc {
+    font-size: 14px;
+    color: #888;
+    line-height: 1.6;
+  }
+
+  .side-section {
+    background: #151525;
+    border: 1px solid #2a2a3e;
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 32px;
+  }
+
+  .side-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 14px;
+    color: #fff;
+    margin-bottom: 24px;
+    letter-spacing: 1px;
+  }
+
+  .skills-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .skill-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+
+  .skill-name {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    color: #ccc;
+  }
+
+  .skill-percent {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 9px;
+    color: #666;
+  }
+
+  .skill-bar-bg {
+    height: 8px;
+    background: #0a0a15;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .skill-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 1s ease-out;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .contact-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    color: #fff;
+    transition: all 0.3s ease;
+  }
+
+  .contact-btn.email {
+    background: #1e1e3e;
+    border: 1px solid #2a2a3e;
+  }
+
+  .contact-btn.github {
+    background: #24292e;
+  }
+
+  .contact-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .btn-icon {
+    font-size: 16px;
+  }
+
+  @media (max-width: 768px) {
+    .about-hero {
+      padding: 60px 0 40px;
+    }
+
+    .about-title {
+      font-size: 28px;
+    }
+
+    .exp-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+    }
+
+    .exp-period {
+      font-size: 8px;
+    }
+  }
+</style>

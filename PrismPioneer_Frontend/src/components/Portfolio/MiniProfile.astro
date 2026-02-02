@@ -1,0 +1,346 @@
+<section id="mini-profile" class="mini-profile pixel-scanline">
+  <div class="profile-background"></div>
+  <div class="container">
+    <div class="profile-content">
+      <div class="profile-header">
+        <div class="profile-avatar">
+          <div class="avatar-glow"></div>
+          <span class="avatar-text">DJD</span>
+        </div>
+        
+        <div class="profile-info">
+          <h2 class="profile-title">DotJumpDot</h2>
+          <p class="profile-subtitle">Prism Pioneer</p>
+          <p class="profile-tagline">Creative Developer • AI Enthusiast • Problem Solver</p>
+        </div>
+      </div>
+
+      <div class="profile-bio">
+        <p>
+          Passionate developer building innovative solutions at the intersection of AI, web development, and user experience. 
+          Creating tools that make a difference in the developer community.
+        </p>
+      </div>
+
+      <div class="profile-stats">
+        <div class="stat-card">
+          <span class="stat-value">9</span>
+          <span class="stat-label">Projects</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-card">
+          <span class="stat-value">163</span>
+          <span class="stat-label">Contributions</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-card">
+          <span class="stat-value">3</span>
+          <span class="stat-label">Years Exp</span>
+        </div>
+      </div>
+
+      <div class="profile-actions">
+        <a href="/about" class="about-btn primary">
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+          <span>Learn More About Me</span>
+        </a>
+        
+        <a href="https://github.com/DotJumpDot" target="_blank" rel="noopener noreferrer" class="about-btn secondary">
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          <span>GitHub</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  .mini-profile {
+    position: relative;
+    padding: 100px 0;
+    background: linear-gradient(180deg, #0d0d18 0%, #0a0a15 100%);
+    overflow: hidden;
+  }
+
+  .profile-background {
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse at 50% 0%, rgba(148, 0, 211, 0.12) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 100%, rgba(0, 191, 255, 0.08) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .profile-content {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+
+  .profile-avatar {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background: #151525;
+    border: 3px solid #2a2a3e;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .avatar-glow {
+    position: absolute;
+    inset: -8px;
+    background: radial-gradient(circle, #9400D3 0%, transparent 70%);
+    opacity: 0.4;
+    animation: glowPulse 4s ease-in-out infinite;
+  }
+
+  @keyframes glowPulse {
+    0%, 100% { transform: scale(1); opacity: 0.4; }
+    50% { transform: scale(1.15); opacity: 0.6; }
+  }
+
+  .avatar-text {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 20px;
+    color: #fff;
+    z-index: 1;
+  }
+
+  .profile-info {
+    text-align: center;
+  }
+
+  .profile-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: clamp(24px, 4vw, 32px);
+    color: #fff;
+    margin-bottom: 12px;
+  }
+
+  .profile-subtitle {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
+    color: #9400D3;
+    margin-bottom: 8px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .profile-tagline {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    color: #666;
+    letter-spacing: 1px;
+  }
+
+  .profile-bio {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 40px;
+  }
+
+  .profile-bio p {
+    font-size: 15px;
+    color: #bbb;
+    line-height: 1.8;
+    margin: 0;
+  }
+
+  .profile-stats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+
+  .stat-card {
+    text-align: center;
+  }
+
+  .stat-value {
+    display: block;
+    font-family: 'Press Start 2P', cursive;
+    font-size: clamp(24px, 4vw, 32px);
+    color: #FFD700;
+    text-shadow: 2px 2px 0 #FF6600;
+    animation: statPulse 3s ease-in-out infinite;
+  }
+
+  @keyframes statPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+
+  .stat-label {
+    display: block;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    color: #888;
+    margin-top: 8px;
+    letter-spacing: 1px;
+  }
+
+  .stat-divider {
+    width: 2px;
+    height: 40px;
+    background: linear-gradient(180deg, transparent, #FFD700, transparent);
+  }
+
+  .profile-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .about-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 40px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 320px;
+    justify-content: center;
+  }
+
+  .about-btn.primary {
+    background: linear-gradient(135deg, #9400D3, #6B21A8);
+    color: #fff;
+    border: 2px solid #9400D3;
+    box-shadow: 
+      0 4px 20px rgba(148, 0, 211, 0.3),
+      0 0 30px rgba(148, 0, 211, 0.1);
+  }
+
+  .about-btn.primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+      0 8px 30px rgba(148, 0, 211, 0.5),
+      0 0 50px rgba(148, 0, 211, 0.2);
+  }
+
+  .about-btn.secondary {
+    background: transparent;
+    color: #fff;
+    border: 2px solid #333;
+  }
+
+  .about-btn.secondary:hover {
+    border-color: #9400D3;
+    color: #9400D3;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(148, 0, 211, 0.2);
+  }
+
+  .btn-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  @media (min-width: 768px) {
+    .profile-actions {
+      flex-direction: row;
+      justify-content: center;
+    }
+
+    .profile-header {
+      flex-direction: row;
+      justify-content: center;
+      text-align: left;
+    }
+
+    .profile-info {
+      text-align: left;
+    }
+
+    .about-btn {
+      width: auto;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .mini-profile {
+      padding: 60px 0;
+    }
+
+    .profile-avatar {
+      width: 80px;
+      height: 80px;
+    }
+
+    .avatar-text {
+      font-size: 16px;
+    }
+
+    .profile-title {
+      font-size: 20px;
+    }
+
+    .profile-tagline {
+      font-size: 9px;
+    }
+
+    .profile-stats {
+      gap: 24px;
+    }
+
+    .stat-value {
+      font-size: 20px;
+    }
+
+    .stat-label {
+      font-size: 8px;
+    }
+
+    .stat-divider {
+      height: 30px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .mini-profile {
+      padding: 40px 0;
+    }
+
+    .profile-bio {
+      padding: 20px;
+    }
+
+    .profile-bio p {
+      font-size: 13px;
+    }
+
+    .about-btn {
+      padding: 14px 32px;
+      font-size: 11px;
+    }
+  }
+</style>

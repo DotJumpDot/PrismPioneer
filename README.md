@@ -1,13 +1,13 @@
 # PrismPioneer
 
-A modern portfolio and blog website built with Astro (frontend) and ElysiaJS (backend), powered by Supabase PostgreSQL database.
+A modern portfolio and blog website built with Astro 5 (frontend) and ElysiaJS (backend), powered by Supabase PostgreSQL database.
 
 ## Project Structure
 
 ```
 PrismPioneer/
 ├── PrismPioneer_Backend/    # ElysiaJS backend API
-├── PrismPioneer_Frontend/   # Astro frontend application
+├── PrismPioneer_Frontend/   # Astro 5 frontend application
 ├── Docs/                    # Documentation
 ├── .env                     # Environment variables (shared)
 ├── .gitignore
@@ -21,10 +21,10 @@ PrismPioneer/
 
 ### Frontend
 
-- **Astro**: Modern web framework for content-focused websites
+- **Astro 5**: Modern web framework for content-focused websites with SSR
 - **TypeScript**: Type-safe JavaScript
-- **Tailwind CSS**: Utility-first CSS framework
-- **Axios**: HTTP client for API requests
+- **Inline CSS**: Custom styling with CSS-in-JS patterns
+- **Zustand**: State management
 
 ### Backend
 
@@ -39,15 +39,36 @@ PrismPioneer/
 ### Database
 
 - **Supabase PostgreSQL**: Managed PostgreSQL database
+- **Direct PostgreSQL**: Native PostgreSQL integration with postgres package
+
+### Additional Frontend Technologies
+
+- **GitHub API**: Dynamic project data fetching
+- **WorkHighlights Component**: Real-time project showcase
+- **TechStack Component**: Automated technology visualization
+- **MiniProfile Component**: Profile section with navigation
+- **RainbowDivider**: Animated section dividers
+
+### State Management & Performance
+
+- **Zustand**: Lightweight state management
+- **Smooth Scrolling**: CSS scroll-behavior implementation
+- **Server-Side Rendering**: Astro 5 SSR optimization
 
 ## Features
 
-- Portfolio showcase
+- Dynamic GitHub project integration with Work Highlights section
+- Automated Tech Stack visualization from repository data
+- Mini Profile section with About Me navigation
+- Three distinct scrollable blocks with smooth scrolling
+- Color-coded technology badges and mini legends
+- Real-time GitHub API data fetching with error handling
+- Portfolio showcase with accurate project information
 - Blog system with markdown support
 - RESTful API with Swagger documentation
-- Responsive design
-- Fast page loads with Astro's zero-JS by default
-- SEO optimized
+- Responsive design across all devices
+- Fast page loads with Astro 5 SSR
+- SEO optimized with sitemap generation
 
 ## Getting Started
 

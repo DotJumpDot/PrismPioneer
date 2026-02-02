@@ -1,0 +1,465 @@
+---
+import { projects } from '@/data/projects';
+
+interface TechCategory {
+  category: string;
+  technologies: Array<{ name: string; color: string; count: number }>;
+}
+
+const LANGUAGE_COLORS: Record<string, string> = {
+  TypeScript: '#007ACC',
+  JavaScript: '#F7DF1E',
+  HTML: '#E34F26',
+  HTML5: '#E34F26',
+  CSS: '#1572B6',
+  Svelte: '#FF3E00',
+  'Svelte 5': '#FF3E00',
+  ElysiaJS: '#FF3E00',
+  Bun: '#FBF0DF',
+  PostgreSQL: '#336791',
+  Supabase: '#3ECF8D',
+  JWT: '#000000',
+  WebSocket: '#F7DF1E',
+  CORS: '#009688',
+  Swagger: '#85EA2D',
+  i18n: '#E10098',
+  KaTeX: '#00C8D3',
+  'Next.js 16': '#000000',
+  'Next.js': '#000000',
+  'React 19': '#61DAFB',
+  React: '#61DAFB',
+  'Mantine UI': '#339AF0',
+  'Ant Design': '#1890FF',
+  'Framer Motion': '#FF0080',
+  Zustand: '#20A7C1',
+  'next-intl': '#00B4D8',
+  'Tailwind CSS 4': '#38B2AC',
+  'Tailwind CSS': '#38B2AC',
+  Turbo: '#000000',
+  'VS Code API': '#007ACC',
+  'VS Code': '#007ACC',
+  'Node.js': '#339933',
+  simpleGame: '#E34F26',
+  'simpleGame.js': '#E34F26',
+  'PNG sprites': '#E34F26',
+  'MP3 audio': '#F7DF1E',
+  'Puzzle games': '#FFA500',
+  'Astro 5': '#FF5D01',
+  Astro: '#FF5D01'
+};
+
+const CATEGORY_MAPPING: Record<string, string> = {
+  'Svelte 5': 'Frontend',
+  Svelte: 'Frontend',
+  TypeScript: 'Frontend',
+  JavaScript: 'Frontend',
+  HTML: 'Frontend',
+  HTML5: 'Frontend',
+  CSS: 'Frontend',
+  'Next.js 16': 'Frontend',
+  'Next.js': 'Frontend',
+  'React 19': 'Frontend',
+  React: 'Frontend',
+  'Mantine UI': 'UI Frameworks',
+  'Ant Design': 'UI Frameworks',
+  'Framer Motion': 'Animations',
+  'next-intl': 'Internationalization',
+  'Tailwind CSS 4': 'Styling',
+  'Tailwind CSS': 'Styling',
+  'Astro 5': 'Frontend',
+  Astro: 'Frontend',
+  ElysiaJS: 'Backend',
+  Bun: 'Backend Runtime',
+  PostgreSQL: 'Database',
+  Supabase: 'Storage',
+  JWT: 'Authentication',
+  WebSocket: 'Real-time',
+  CORS: 'Security',
+  Swagger: 'Documentation',
+  i18n: 'Internationalization',
+  KaTeX: 'Math Rendering',
+  Zustand: 'State Management',
+  Turbo: 'Performance',
+  'VS Code API': 'Tools',
+  'VS Code': 'Tools',
+  'Node.js': 'Runtime',
+  simpleGame: 'Game Engine',
+  'simpleGame.js': 'Game Engine',
+  'PNG sprites': 'Assets',
+  'MP3 audio': 'Assets',
+  'Puzzle games': 'Games'
+};
+
+const techCount: Record<string, number> = {};
+
+projects.forEach(project => {
+  project.techStack.forEach(tech => {
+    techCount[tech] = (techCount[tech] || 0) + 1;
+  });
+});
+
+const categoriesMap: Record<string, Record<string, number>> = {};
+
+Object.entries(techCount).forEach(([tech, count]) => {
+  const category = CATEGORY_MAPPING[tech] || 'Other';
+  if (!categoriesMap[category]) {
+    categoriesMap[category] = {};
+  }
+  categoriesMap[category][tech] = count;
+});
+
+const techCategories: TechCategory[] = Object.entries(categoriesMap).map(([category, techs]) => ({
+  category,
+  technologies: Object.entries(techs)
+    .map(([name, count]) => ({
+      name,
+      color: LANGUAGE_COLORS[name] || '#888888',
+      count
+    }))
+    .sort((a, b) => b.count - a.count)
+})).sort((a, b) => {
+  const order = ['Frontend', 'UI Frameworks', 'Animations', 'Styling', 'Internationalization', 'Backend', 'Backend Runtime', 'Database', 'Storage', 'Authentication', 'Real-time', 'Security', 'Documentation', 'Math Rendering', 'State Management', 'Performance', 'Tools', 'Runtime', 'Game Engine', 'Assets', 'Games', 'Other'];
+  return order.indexOf(a.category) - order.indexOf(b.category);
+});
+---
+
+<section id="tech-stack" class="tech-stack pixel-scanline">
+  <div class="tech-background"></div>
+  <div class="container">
+    <div class="tech-header">
+      <div class="header-decoration">
+        <span class="deco-line"></span>
+        <span class="deco-dot"></span>
+        <span class="deco-line"></span>
+      </div>
+      
+      <h2 class="tech-title">
+        <span class="title-main neon-glow">TECH STACK</span>
+      </h2>
+      
+      <p class="tech-subtitle">
+        Technologies and tools compiled from actual project experience
+      </p>
+      
+      <div class="header-decoration">
+        <span class="deco-line"></span>
+        <span class="deco-dot"></span>
+        <span class="deco-line"></span>
+      </div>
+    </div>
+
+    {techCategories.length > 0 ? (
+      <div class="tech-container">
+        {techCategories.map((category, catIndex) => (
+          <div class="tech-category" style={`animation-delay: ${catIndex * 0.15}s`}>
+            <h3 class="category-title">
+              <span class="category-icon"></span>
+              {category.category}
+            </h3>
+            
+            <div class="tech-grid">
+              {category.technologies.map((tech, techIndex) => (
+                <div class="tech-item" style={`animation-delay: ${catIndex * 0.15 + techIndex * 0.05}s`}>
+                  <span class="tech-dot" style={`background: ${tech.color}; box-shadow: 0 0 8px ${tech.color}`}></span>
+                  <span class="tech-name">{tech.name}</span>
+                  <span class="tech-count">{tech.count}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    ) : (
+      <div class="error-message">
+        <span class="error-icon">⚠️</span>
+        <p>Unable to load tech stack data. Please check back later.</p>
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .tech-stack {
+    position: relative;
+    padding: 100px 0;
+    background: #0a0a15;
+    overflow: hidden;
+  }
+
+  .tech-background {
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse at 30% 20%, rgba(255, 0, 128, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 80%, rgba(0, 191, 255, 0.08) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .tech-header {
+    text-align: center;
+    margin-bottom: 80px;
+    position: relative;
+  }
+
+  .header-decoration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .deco-line {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #9400D3, transparent);
+  }
+
+  .deco-dot {
+    width: 8px;
+    height: 8px;
+    background: #9400D3;
+    border-radius: 50%;
+    animation: dotPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes dotPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.3); opacity: 0.7; }
+  }
+
+  .tech-title {
+    font-family: 'Press Start 2P', cursive;
+    margin-bottom: 24px;
+  }
+
+  .title-main {
+    display: block;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: bold;
+    line-height: 1.2;
+    color: #fff;
+    text-shadow: 
+      0 0 10px #9400D3,
+      0 0 20px #9400D3,
+      0 0 30px #9400D3;
+  }
+
+  @keyframes neonGlow {
+    0%, 100% { 
+      text-shadow: 
+        0 0 10px #9400D3,
+        0 0 20px #9400D3,
+        0 0 30px #9400D3;
+    }
+    50% { 
+      text-shadow: 
+        0 0 20px #9400D3,
+        0 0 40px #9400D3,
+        0 0 60px #9400D3;
+    }
+  }
+
+  .tech-subtitle {
+    font-size: clamp(13px, 2vw, 15px);
+    color: #999;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.8;
+  }
+
+  .tech-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  @media (min-width: 768px) {
+    .tech-container {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 56px;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .tech-container {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 64px;
+    }
+  }
+
+  .tech-category {
+    background: #151525;
+    border: 1px solid #2a2a3e;
+    border-radius: 16px;
+    padding: 32px;
+    animation: categoryFadeIn 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  @keyframes categoryFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .tech-category:hover {
+    border-color: #9400D3;
+    box-shadow: 0 8px 24px rgba(148, 0, 211, 0.15);
+  }
+
+  .category-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 14px;
+    color: #fff;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .category-icon {
+    width: 12px;
+    height: 12px;
+    background: #9400D3;
+    border-radius: 50%;
+    flex-shrink: 0;
+    box-shadow: 0 0 10px #9400D3;
+  }
+
+  .tech-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .tech-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    animation: techItemFadeIn 0.4s ease-out forwards;
+    opacity: 0;
+  }
+
+  @keyframes techItemFadeIn {
+    from {
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .tech-item:hover {
+    background: rgba(148, 0, 211, 0.1);
+    border-color: rgba(148, 0, 211, 0.3);
+    transform: translateX(4px);
+  }
+
+  .tech-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .tech-name {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    color: #ccc;
+    flex: 1;
+  }
+
+  .tech-count {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 9px;
+    color: #666;
+    min-width: 20px;
+    text-align: center;
+  }
+
+  .error-message {
+    text-align: center;
+    padding: 60px 20px;
+    color: #888;
+  }
+
+  .error-icon {
+    display: block;
+    font-size: 48px;
+    margin-bottom: 16px;
+  }
+
+  .error-message p {
+    font-size: 14px;
+  }
+
+  @media (max-width: 768px) {
+    .tech-stack {
+      padding: 60px 0;
+    }
+
+    .tech-header {
+      margin-bottom: 48px;
+    }
+
+    .deco-line {
+      width: 40px;
+    }
+
+    .tech-subtitle {
+      font-size: 12px;
+    }
+
+    .tech-container {
+      gap: 32px;
+    }
+
+    .tech-category {
+      padding: 24px;
+    }
+
+    .tech-grid {
+      gap: 8px;
+    }
+
+    .tech-item {
+      padding: 12px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .tech-title {
+      margin-bottom: 16px;
+    }
+
+    .header-decoration {
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .deco-line {
+      width: 30px;
+    }
+
+    .category-title {
+      font-size: 12px;
+    }
+
+    .tech-name {
+      font-size: 9px;
+    }
+  }
+</style>

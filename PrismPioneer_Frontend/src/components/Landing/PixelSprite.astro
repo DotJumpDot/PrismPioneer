@@ -1,0 +1,84 @@
+---
+interface Props {
+  type: 'ghost' | 'alien' | 'ship' | 'heart' | 'star';
+  color?: string;
+  size?: number;
+  animation?: 'bounce' | 'float' | 'spin' | 'none';
+}
+
+const { type, color = 'currentColor', size = 32, animation = 'none' } = Astro.props;
+
+const sprites = {
+  ghost: `
+    <rect x="8" y="4" width="32" height="32" rx="16"/>
+    <rect x="8" y="20" width="32" height="20"/>
+    <rect x="8" y="40" width="8" height="4"/>
+    <rect x="24" y="40" width="8" height="4"/>
+    <rect x="40" y="40" width="8" height="4"/>
+    <circle cx="16" cy="20" r="4" fill="black"/>
+    <circle cx="32" cy="20" r="4" fill="black"/>
+  `,
+  alien: `
+    <rect x="12" y="8" width="24" height="16" rx="4"/>
+    <rect x="8" y="16" width="32" height="12"/>
+    <rect x="4" y="20" width="40" height="8"/>
+    <rect x="12" y="28" width="8" height="8"/>
+    <rect x="28" y="28" width="8" height="8"/>
+    <circle cx="16" cy="16" r="3" fill="black"/>
+    <circle cx="32" cy="16" r="3" fill="black"/>
+  `,
+  ship: `
+    <path d="M24 4L12 36H36L24 4Z"/>
+    <rect x="20" y="36" width="8" height="8"/>
+    <rect x="8" y="28" width="8" height="8"/>
+    <rect x="32" y="28" width="8" height="8"/>
+  `,
+  heart: `
+    <path d="M24 42L8 28C4 24 4 18 8 14C12 10 18 10 22 14L24 16L26 14C30 10 36 10 40 14C44 18 44 24 40 28L24 42Z"/>
+  `,
+  star: `
+    <path d="M24 4L27 16L40 16L30 23L34 36L24 29L14 36L18 23L8 16L21 16Z"/>
+  `
+};
+---
+
+<div class={`pixel-sprite sprite-${animation}`} style={`width: ${size}px; height: ${size}px; color: ${color};`}>
+  <svg viewBox="0 0 48 48" fill="currentColor">
+    <Fragment set:html={sprites[type]} />
+  </svg>
+</div>
+
+<style>
+  .pixel-sprite {
+    display: inline-block;
+    filter: drop-shadow(0 0 4px currentColor);
+  }
+
+  .sprite-bounce {
+    animation: spriteBounce 0.5s ease-in-out infinite;
+  }
+
+  .sprite-float {
+    animation: spriteFloat 3s ease-in-out infinite;
+  }
+
+  .sprite-spin {
+    animation: spriteSpin 2s linear infinite;
+  }
+
+  @keyframes spriteBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  @keyframes spriteFloat {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    25% { transform: translateY(-4px) translateX(2px); }
+    75% { transform: translateY(4px) translateX(-2px); }
+  }
+
+  @keyframes spriteSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+</style>

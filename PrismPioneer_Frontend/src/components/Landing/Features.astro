@@ -1,0 +1,427 @@
+---
+import PixelIcon from './PixelIcon.astro';
+import SectionHeader from './SectionHeader.astro';
+import PixelSprite from './PixelSprite.astro';
+
+const features = [
+  {
+    icon: 'gamepad',
+    title: 'Classic Gaming',
+    description: 'Experience the golden age of arcade gaming with authentic 8-bit graphics and sound.',
+    color: '#FF0000'
+  },
+  {
+    icon: 'trophy',
+    title: 'Leaderboards',
+    description: 'Compete with players worldwide and climb the ranks to become the ultimate champion.',
+    color: '#FF7F00'
+  },
+  {
+    icon: 'star',
+    title: 'Unlockables',
+    description: 'Discover hidden secrets and unlock special characters, power-ups, and achievements.',
+    color: '#FFFF00'
+  },
+  {
+    icon: 'lightning',
+    title: 'Fast-Paced',
+    description: 'Non-stop action with quick gameplay sessions perfect for both casual and hardcore gamers.',
+    color: '#00FF00'
+  },
+  {
+    icon: 'music',
+    title: 'Retro Soundtrack',
+    description: 'Immerse yourself in nostalgic chiptune music and authentic arcade sound effects.',
+    color: '#0000FF'
+  },
+  {
+    icon: 'heart',
+    title: 'Community',
+    description: 'Join a passionate community of retro gaming enthusiasts and share your adventures.',
+    color: '#9400D3'
+  }
+];
+---
+
+<section id="features" class="features pixel-scanline">
+  <div class="features-background"></div>
+  <div class="container">
+    <div class="features-header-wrapper">
+      <div class="header-sprite left">
+        <PixelSprite type="ghost" color="#FF0000" size={48} animation="float" />
+      </div>
+      <SectionHeader 
+        prefix="FEATURE" 
+        title="SHOWCASE" 
+        subtitle="Discover what makes Prism Pioneer the ultimate retro gaming experience"
+      />
+      <div class="header-sprite right">
+        <PixelSprite type="alien" color="#00FF00" size={48} animation="float" />
+      </div>
+    </div>
+
+    <div class="features-grid">
+      {features.map((feature, index) => (
+        <div class="feature-card" style={`--feature-color: ${feature.color}; --delay: ${index * 0.1}s;`}>
+          <div class="feature-icon-wrapper">
+            <PixelIcon icon={feature.icon} size={64} color={feature.color} />
+          </div>
+          <h3 class="feature-title">{feature.title}</h3>
+          <p class="feature-description">{feature.description}</p>
+          <div class="feature-decoration"></div>
+        </div>
+      ))}
+    </div>
+
+    <div class="features-stats">
+      <div class="stat-banner">
+        <div class="stat-item">
+          <span class="stat-number">24/7</span>
+          <span class="stat-text">GAMING</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">FREE</span>
+          <span class="stat-text">TO PLAY</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">NO</span>
+          <span class="stat-text">ADS</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .features {
+    position: relative;
+    padding: 100px 0;
+    background: #0f0f1a;
+    overflow: hidden;
+  }
+
+  .features-header-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 64px;
+  }
+
+  .header-sprite {
+    display: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  @media (min-width: 1024px) {
+    .header-sprite {
+      display: block;
+    }
+  }
+
+  .header-sprite.left {
+    left: 0;
+  }
+
+  .header-sprite.right {
+    right: 0;
+  }
+
+  .features-background {
+    position: absolute;
+    inset: 0;
+    background: 
+      linear-gradient(180deg, rgba(255, 0, 0, 0.03) 0%, transparent 20%),
+      linear-gradient(180deg, transparent 80%, rgba(148, 0, 211, 0.03) 100%);
+    pointer-events: none;
+  }
+
+  .features-header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  .section-title {
+    font-family: 'Press Start 2P', cursive;
+    margin-bottom: 16px;
+  }
+
+  .title-prefix {
+    display: block;
+    font-size: 14px;
+    color: #666;
+    letter-spacing: 4px;
+    margin-bottom: 8px;
+  }
+
+  .title-main {
+    display: block;
+    font-size: clamp(28px, 5vw, 48px);
+    background: linear-gradient(90deg, #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #4B0082, #9400D3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: rainbowShift 3s linear infinite;
+    background-size: 400% 400%;
+  }
+
+  @keyframes rainbowShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .neon-glow {
+    text-shadow: 
+      0 0 10px rgba(255, 0, 0, 0.8),
+      0 0 20px rgba(255, 127, 0, 0.8),
+      0 0 30px rgba(255, 255, 0, 0.8);
+  }
+
+  .section-subtitle {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
+    color: #999;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.8;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 32px;
+    margin-bottom: 64px;
+  }
+
+  @media (min-width: 768px) {
+    .features-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .features-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px;
+    }
+  }
+
+  .feature-card {
+    position: relative;
+    background: linear-gradient(145deg, #1a1a2e 0%, #0f0f1a 100%);
+    border: 4px solid;
+    border-image: linear-gradient(135deg, var(--feature-color), transparent) 1;
+    padding: 40px 32px;
+    transition: all 0.3s ease;
+    animation: cardFadeIn 0.6s ease forwards;
+    animation-delay: var(--delay);
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  @keyframes cardFadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 
+      0 20px 40px rgba(0, 0, 0, 0.4),
+      0 0 30px var(--feature-color);
+    border-color: var(--feature-color);
+  }
+
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--feature-color), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .feature-card:hover::before {
+    opacity: 1;
+  }
+
+  .feature-icon-wrapper {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.3);
+    border: 4px solid var(--feature-color);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .feature-card:hover .feature-icon-wrapper {
+    transform: rotate(10deg) scale(1.1);
+    box-shadow: 0 0 30px var(--feature-color);
+  }
+
+  .feature-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 16px;
+    min-height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .feature-description {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    color: #999;
+    text-align: center;
+    line-height: 1.8;
+  }
+
+  .feature-decoration {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 4px;
+  }
+
+  .feature-decoration::before,
+  .feature-decoration::after {
+    content: '';
+    width: 4px;
+    height: 4px;
+    background: var(--feature-color);
+    animation: decorationPulse 1s ease infinite;
+  }
+
+  .feature-decoration::after {
+    animation-delay: 0.5s;
+  }
+
+  @keyframes decorationPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+
+  .features-stats {
+    margin-top: 64px;
+  }
+
+  .stat-banner {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background: linear-gradient(90deg, #1a1a2e, #2a2a3e, #1a1a2e);
+    border: 4px solid;
+    border-image: linear-gradient(90deg, #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #4B0082, #9400D3) 1;
+    padding: 32px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @media (min-width: 768px) {
+    .stat-banner {
+      flex-direction: row;
+      gap: 64px;
+    }
+  }
+
+  .stat-item {
+    text-align: center;
+    animation: statPulse 2s ease-in-out infinite;
+  }
+
+  .stat-item:nth-child(2) {
+    animation-delay: 0.3s;
+  }
+
+  .stat-item:nth-child(3) {
+    animation-delay: 0.6s;
+  }
+
+  @keyframes statPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+
+  .stat-number {
+    display: block;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 24px;
+    color: #FFD700;
+    text-shadow: 2px 2px 0 #FF6600;
+    margin-bottom: 8px;
+  }
+
+  .stat-text {
+    display: block;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    color: #fff;
+    letter-spacing: 2px;
+  }
+
+  @media (max-width: 768px) {
+    .features {
+      padding: 60px 0;
+    }
+
+    .features-header {
+      margin-bottom: 48px;
+    }
+
+    .section-title {
+      margin-bottom: 12px;
+    }
+
+    .title-main {
+      font-size: 24px;
+    }
+
+    .section-subtitle {
+      font-size: 10px;
+    }
+
+    .feature-card {
+      padding: 32px 24px;
+    }
+
+    .feature-icon-wrapper {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 16px;
+    }
+
+    .feature-title {
+      font-size: 12px;
+    }
+
+    .feature-description {
+      font-size: 8px;
+    }
+
+    .stat-number {
+      font-size: 20px;
+    }
+
+    .stat-text {
+      font-size: 8px;
+    }
+  }
+</style>

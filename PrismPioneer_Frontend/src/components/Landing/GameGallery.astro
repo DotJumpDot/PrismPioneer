@@ -1,0 +1,560 @@
+---
+import PixelButton from './PixelButton.astro';
+import PixelIcon from './PixelIcon.astro';
+import SectionHeader from './SectionHeader.astro';
+import PixelSprite from './PixelSprite.astro';
+
+const games = [
+  {
+    title: 'Pixel Quest',
+    category: 'Adventure',
+    rating: 5,
+    players: '1-2',
+    color: '#FF0000'
+  },
+  {
+    title: 'Space Invaders',
+    category: 'Shooter',
+    rating: 4,
+    players: '1',
+    color: '#FF7F00'
+  },
+  {
+    title: 'Retro Racer',
+    category: 'Racing',
+    rating: 5,
+    players: '1-4',
+    color: '#FFFF00'
+  },
+  {
+    title: 'Dungeon Crawler',
+    category: 'RPG',
+    rating: 4,
+    players: '1',
+    color: '#00FF00'
+  },
+  {
+    title: 'Puzzle Master',
+    category: 'Puzzle',
+    rating: 5,
+    players: '1',
+    color: '#0000FF'
+  },
+  {
+    title: 'Battle Arena',
+    category: 'Fighting',
+    rating: 4,
+    players: '1-2',
+    color: '#9400D3'
+  }
+];
+---
+
+<section id="games" class="game-gallery pixel-scanline">
+  <div class="gallery-background"></div>
+  <div class="container">
+    <div class="gallery-header-wrapper">
+      <div class="header-sprite left">
+        <PixelSprite type="ship" color="#00FFFF" size={48} animation="bounce" />
+      </div>
+      <SectionHeader 
+        prefix="GAME" 
+        title="GALLERY" 
+        subtitle="Explore our collection of classic 8-bit arcade games"
+      />
+      <div class="header-sprite right">
+        <PixelSprite type="star" color="#FFD700" size={48} animation="spin" />
+      </div>
+    </div>
+
+    <div class="games-grid">
+      {games.map((game, index) => (
+        <div class="game-card" style={`--game-color: ${game.color}; --delay: ${index * 0.1}s;`}>
+          <div class="game-screen">
+            <div class="screen-viewport">
+              <div class="pixel-game-placeholder">
+                <div class="placeholder-icon">
+                  <PixelIcon icon="gamepad" size={48} color={game.color} />
+                </div>
+                <div class="placeholder-text">
+                  <span class="text-line"></span>
+                  <span class="text-line short"></span>
+                  <span class="text-line"></span>
+                </div>
+              </div>
+            </div>
+            <div class="screen-frame"></div>
+          </div>
+          
+          <div class="game-info">
+            <h3 class="game-title">{game.title}</h3>
+            <div class="game-meta">
+              <span class="game-category pixel-font">{game.category}</span>
+              <span class="game-divider">•</span>
+              <div class="game-rating">
+                {Array(5).fill(0).map((_, i) => (
+                  <span class={`star ${i < game.rating ? 'filled' : ''}`}>★</span>
+                ))}
+              </div>
+            </div>
+            <div class="game-players">
+              <PixelIcon icon="trophy" size={16} color="#FFD700" />
+              <span class="player-count pixel-font">{game.players} Players</span>
+            </div>
+          </div>
+
+          <div class="game-actions">
+            <button class="play-btn pixel-font" style={`--btn-color: ${game.color};`}>
+              <span class="btn-icon">▶</span>
+              <span class="btn-text">PLAY NOW</span>
+            </button>
+          </div>
+
+          <div class="card-decoration"></div>
+        </div>
+      ))}
+    </div>
+
+    <div class="gallery-footer">
+      <PixelButton href="#" variant="rainbow" size="lg">
+        VIEW ALL GAMES
+      </PixelButton>
+      <div class="footer-decorations">
+        <div class="deco-coin"></div>
+        <div class="deco-coin"></div>
+        <div class="deco-coin"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .game-gallery {
+    position: relative;
+    padding: 100px 0;
+    background: #0d0d18;
+    overflow: hidden;
+  }
+
+  .gallery-header-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 64px;
+  }
+
+  .header-sprite {
+    display: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  @media (min-width: 1024px) {
+    .header-sprite {
+      display: block;
+    }
+  }
+
+  .header-sprite.left {
+    left: 0;
+  }
+
+  .header-sprite.right {
+    right: 0;
+  }
+
+  .gallery-background {
+    position: absolute;
+    inset: 0;
+    background: 
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(255, 255, 255, 0.02) 2px,
+        rgba(255, 255, 255, 0.02) 4px
+      );
+    pointer-events: none;
+  }
+
+  .gallery-header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  .section-title {
+    font-family: 'Press Start 2P', cursive;
+    margin-bottom: 16px;
+  }
+
+  .title-prefix {
+    display: block;
+    font-size: 14px;
+    color: #666;
+    letter-spacing: 4px;
+    margin-bottom: 8px;
+  }
+
+  .title-main {
+    display: block;
+    font-size: clamp(28px, 5vw, 48px);
+    background: linear-gradient(90deg, #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #4B0082, #9400D3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: rainbowShift 3s linear infinite;
+    background-size: 400% 400%;
+  }
+
+  @keyframes rainbowShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .neon-glow {
+    text-shadow: 
+      0 0 10px rgba(255, 0, 0, 0.8),
+      0 0 20px rgba(255, 127, 0, 0.8),
+      0 0 30px rgba(255, 255, 0, 0.8);
+  }
+
+  .section-subtitle {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
+    color: #999;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.8;
+  }
+
+  .games-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 40px;
+    margin-bottom: 64px;
+  }
+
+  @media (min-width: 768px) {
+    .games-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 48px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .games-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 56px;
+    }
+  }
+
+  .game-card {
+    position: relative;
+    background: linear-gradient(145deg, #1a1a2e 0%, #0f0f1a 100%);
+    border: 4px solid #2a2a3e;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    animation: cardSlideUp 0.6s ease forwards;
+    animation-delay: var(--delay);
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  @keyframes cardSlideUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .game-card:hover {
+    transform: translateY(-12px);
+    border-color: var(--game-color);
+    box-shadow: 
+      0 20px 60px rgba(0, 0, 0, 0.5),
+      0 0 40px var(--game-color);
+  }
+
+  .game-screen {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: #000;
+    overflow: hidden;
+  }
+
+  .screen-viewport {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #0a0a15 0%, #151525 100%);
+  }
+
+  .pixel-game-placeholder {
+    text-align: center;
+    animation: placeholderPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes placeholderPulse {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+  }
+
+  .placeholder-icon {
+    margin-bottom: 16px;
+  }
+
+  .placeholder-text {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .text-line {
+    width: 80px;
+    height: 8px;
+    background: var(--game-color);
+    opacity: 0.6;
+    animation: lineGrow 1s ease infinite;
+  }
+
+  .text-line.short {
+    width: 48px;
+    animation-delay: 0.2s;
+  }
+
+  @keyframes lineGrow {
+    0%, 100% { transform: scaleX(1); }
+    50% { transform: scaleX(1.2); }
+  }
+
+  .screen-frame {
+    position: absolute;
+    inset: 0;
+    border: 8px solid #1a1a2e;
+    border-radius: 4px;
+    pointer-events: none;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+  }
+
+  .game-card:hover .screen-frame {
+    border-color: var(--game-color);
+  }
+
+  .game-info {
+    padding: 24px;
+    background: linear-gradient(180deg, #1a1a2e 0%, #151525 100%);
+  }
+
+  .game-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 14px;
+    color: #fff;
+    margin-bottom: 12px;
+    min-height: 32px;
+    display: flex;
+    align-items: center;
+  }
+
+  .game-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .game-category {
+    font-size: 10px;
+    color: var(--game-color);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  .game-divider {
+    color: #444;
+  }
+
+  .game-rating {
+    display: flex;
+    gap: 2px;
+  }
+
+  .star {
+    font-size: 12px;
+    color: #333;
+  }
+
+  .star.filled {
+    color: #FFD700;
+    text-shadow: 0 0 5px #FFD700;
+  }
+
+  .game-players {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .player-count {
+    font-size: 10px;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .game-actions {
+    padding: 16px 24px 24px;
+    background: #0f0f1a;
+  }
+
+  .play-btn {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, var(--btn-color), color-mix(in srgb, var(--btn-color) 70%, #000));
+    border: 4px solid var(--btn-color);
+    color: #fff;
+    font-size: 12px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  .play-btn:hover {
+    transform: scale(1.02);
+    box-shadow: 
+      0 0 20px var(--btn-color),
+      0 0 40px var(--btn-color);
+  }
+
+  .play-btn:active {
+    transform: scale(0.98);
+  }
+
+  .btn-icon {
+    font-size: 16px;
+    animation: btnPulse 1s ease infinite;
+  }
+
+  @keyframes btnPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+  }
+
+  .card-decoration {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 8px;
+    height: 8px;
+    background: var(--game-color);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--game-color);
+    animation: decoPulse 2s ease infinite;
+  }
+
+  @keyframes decoPulse {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.5); opacity: 1; }
+  }
+
+  .gallery-footer {
+    text-align: center;
+    position: relative;
+  }
+
+  .footer-decorations {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 32px;
+  }
+
+  .deco-coin {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+    border: 4px solid #B8860B;
+    border-radius: 50%;
+    animation: coinSpin 2s linear infinite;
+  }
+
+  @keyframes coinSpin {
+    0% { transform: rotateY(0deg); }
+    100% { transform: rotateY(360deg); }
+  }
+
+  .deco-coin:nth-child(2) {
+    animation-delay: 0.3s;
+  }
+
+  .deco-coin:nth-child(3) {
+    animation-delay: 0.6s;
+  }
+
+  @media (max-width: 768px) {
+    .game-gallery {
+      padding: 60px 0;
+    }
+
+    .gallery-header {
+      margin-bottom: 48px;
+    }
+
+    .section-title {
+      margin-bottom: 12px;
+    }
+
+    .title-main {
+      font-size: 24px;
+    }
+
+    .section-subtitle {
+      font-size: 10px;
+    }
+
+    .game-card {
+      border-radius: 8px;
+    }
+
+    .game-screen {
+      border-radius: 8px 8px 0 0;
+    }
+
+    .game-info {
+      padding: 20px 16px;
+    }
+
+    .game-title {
+      font-size: 12px;
+    }
+
+    .game-players {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+    }
+
+    .game-actions {
+      padding: 16px;
+    }
+
+    .play-btn {
+      padding: 12px;
+      font-size: 10px;
+    }
+  }
+</style>
