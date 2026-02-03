@@ -10,12 +10,10 @@ This document describes the AI agents configured for the PrismPioneer project.
 - **Capabilities**:
   - Project structure creation
   - Code generation and refactoring
-  - Database schema design
-  - API development
   - Frontend component development
   - GitHub API integration
   - Dynamic content generation
-- **Frameworks**: Astro 5, ElysiaJS, TypeScript, Node.js
+- **Frameworks**: Astro 5, TypeScript, Node.js
 - **Tools**: File operations, command execution, code search
 
 ## Agent Guidelines
@@ -36,7 +34,6 @@ Always update the version number at the top of the changelog entry with the date
 
 When updating CHANGELOGS.md, also update the version in:
 - `PrismPioneer_Frontend/package.json`
-- `PrismPioneer_Backend/package.json` (if applicable)
 
 Sync the package.json version to match the latest CHANGELOG version.
 
@@ -44,17 +41,6 @@ Sync the package.json version to match the latest CHANGELOG version.
 
 - **IMPORTANT**: Do NOT automatically run `npm run dev` or `npm run build` commands unless explicitly requested by the user
 - Only run these commands when the user specifically asks to start the development server or build the project
-
-### Backend Development
-
-- Follow ElysiaJS best practices
-- Use TypeScript for type safety
-- Implement proper authentication and authorization
-- Write comprehensive API documentation with Swagger
-- Use PostgreSQL with proper schema design
-- Follow RESTful API conventions
-- Use environment variables for configuration
-- Implement proper error handling and validation
 
 ### Frontend Development
 
@@ -77,23 +63,6 @@ Sync the package.json version to match the latest CHANGELOG version.
 - Implement proper error handling
 - Use async/await for asynchronous operations
 
-### Database Design
-
-- Use PostgreSQL with proper indexing
-- Implement proper foreign key relationships
-- Use UUIDs for primary keys
-- Implement proper data validation at database level
-- Use transactions for data integrity
-
-### API Design
-
-- Use consistent naming conventions
-- Implement proper HTTP status codes
-- Use pagination for list endpoints
-- Implement filtering and sorting
-- Use proper request/response schemas
-- Implement rate limiting and security measures
-
 ## Future Agent Configurations
 
 This section can be expanded to include additional AI agents for:
@@ -104,4 +73,3 @@ This section can be expanded to include additional AI agents for:
 - SEO optimization
 - Analytics integration
 - Performance monitoring
-- Security auditing

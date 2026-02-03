@@ -19,25 +19,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated project data with accurate GitHub repository information
 - Header redesign with DotJumpDot branding and Prism Pioneer subtitle
 
+## [0.2.0] - 2026-02-03
+
 ### Changed
 
-- Backend framework migrated from Django to ElysiaJS
-- Port configuration: Backend (4100), Frontend (4200)
-- Database connection using direct PostgreSQL integration
-- API structure following RESTful conventions
-
-### Security
-
-- Implemented API key authentication
-- Added password complexity requirements
-- Secure password hashing with bcrypt (12 salt rounds)
-- JWT token-based authentication
-- Input sanitization and validation
-
-### Fixed
-
-- Fixed TypeScript type errors in API key authentication middleware
-- Fixed type casting issues with PostgreSQL RowList to User array conversion
+- Removed backend architecture - project is now frontend-only
+- Project simplified to pure Astro 5 portfolio and blog website
+- Removed all ElysiaJS, PostgreSQL, Supabase, and backend dependencies
+- Updated project structure to remove PrismPioneer_Backend directory
+- Updated documentation to reflect frontend-only architecture
+- Simplified setup process with no environment variables required
+- Removed API endpoints, authentication, and database integration
+- Updated Prism Pioneer project data to reflect frontend-only tech stack
 
 ## [0.1.2] - 2026-02-02
 
