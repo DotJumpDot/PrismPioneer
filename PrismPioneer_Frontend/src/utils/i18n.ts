@@ -10,6 +10,15 @@ export const translations: Record<string, Translations> = {
 
 export type Language = "en" | "th";
 
+export function getLanguageFromURL(url: URL): Language {
+  const parts = url.pathname.split("/");
+  const lang = parts[1];
+  if (lang === "en" || lang === "th") {
+    return lang as Language;
+  }
+  return "en";
+}
+
 export function getTranslations(lang: Language = "en"): Translations {
   return translations[lang] || translations.en;
 }

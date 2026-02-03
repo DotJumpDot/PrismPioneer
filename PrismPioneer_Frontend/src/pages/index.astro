@@ -1,26 +1,4 @@
 ---
-import Layout from '@/layouts/Landing.astro';
-import Hero from '@/components/Landing/Hero.astro';
-import WorkHighlights from '@/components/Portfolio/WorkHighlights.astro';
-import TechStack from '@/components/Portfolio/TechStack.astro';
-import MiniProfile from '@/components/Portfolio/MiniProfile.astro';
-import RainbowDivider from '@/components/Landing/RainbowDivider.astro';
+// Redirect to default locale
+return Astro.redirect('/en');
 ---
-
-<Layout title="Home" description="DotJumpDot - Prism Pioneer - Building innovative solutions in AI, web development, and user experience">
-  <Hero />
-  <RainbowDivider height={6} animate={true} />
-  <WorkHighlights />
-  <RainbowDivider height={6} animate={true} />
-  <TechStack />
-  <RainbowDivider height={6} animate={true} />
-  <MiniProfile />
-  <RainbowDivider height={6} animate={true} />
-</Layout>
-
-<style is:global>
-  html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 80px;
-  }
-</style>

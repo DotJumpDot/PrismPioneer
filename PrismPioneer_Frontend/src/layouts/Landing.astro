@@ -2,6 +2,9 @@
 import '@/styles/pixel-art.css';
 import Header from '../components/Landing/Header.astro';
 import Footer from '../components/Landing/Footer.astro';
+import I18nProvider from '../components/Landing/I18nProvider.astro';
+import useLanguageStore from '@/stores/languageStore';
+import { getLanguageFromURL } from '@/utils/i18n';
 
 interface Props {
   title: string;
@@ -14,10 +17,11 @@ const {
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const initialLang = getLanguageFromURL(Astro.url);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={initialLang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
@@ -38,13 +42,15 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   <body class="pixel-body">
     <div class="pixel-background"></div>
     
-    <Header />
-    
-    <main class="pixel-main">
-      <slot />
-    </main>
-    
-    <Footer />
+    <I18nProvider initialLang={initialLang}>
+      <Header />
+      
+      <main class="pixel-main">
+        <slot />
+      </main>
+      
+      <Footer />
+    </I18nProvider>
     
     <script>
       document.addEventListener('DOMContentLoaded', () => {

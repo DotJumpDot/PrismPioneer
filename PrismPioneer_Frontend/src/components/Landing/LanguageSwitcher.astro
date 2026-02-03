@@ -1,9 +1,26 @@
+---
+const currentPath = Astro.url.pathname;
+const parts = currentPath.split('/');
+
+const getPath = (lang: string) => {
+    const p = [...parts];
+    if (p[1] === 'en' || p[1] === 'th') {
+        p[1] = lang;
+        return p.join('/');
+    }
+    return `/${lang}${currentPath === '/' ? '' : currentPath}`;
+};
+
+const enPath = getPath('en');
+const thPath = getPath('th');
+---
+
 <div class="lang-switcher pixel-container">
-  <a href="?lang=en" class="lang-btn en-btn" aria-label="Switch to English">
+  <a href={enPath} class="lang-btn en-btn" data-lang="en" aria-label="Switch to English">
     <span class="lang-text">EN</span>
     <span class="lang-pixel"></span>
   </a>
-  <a href="?lang=th" class="lang-btn th-btn" aria-label="Switch to Thai">
+  <a href={thPath} class="lang-btn th-btn" data-lang="th" aria-label="Switch to Thai">
     <span class="lang-text">TH</span>
     <span class="lang-pixel"></span>
   </a>
@@ -183,24 +200,29 @@
 </style>
 
 <script>
-  const params = new URLSearchParams(window.location.search);
-  const langParam = params.get('lang');
+  import useLanguageStore from '@/stores/languageStore';
 
-  if (langParam === 'en' || langParam === 'th') {
-    localStorage.setItem('language', langParam);
-    window.history.replaceState({}, '', window.location.pathname);
-  }
+  const { language } = useLanguageStore.getState();
 
-  const currentLang = localStorage.getItem('language') || 'en';
-  
   document.addEventListener('DOMContentLoaded', () => {
     const enBtn = document.querySelector('.en-btn') as HTMLElement;
     const thBtn = document.querySelector('.th-btn') as HTMLElement;
 
-    if (currentLang === 'en') {
-      enBtn?.classList.add('active');
-    } else if (currentLang === 'th') {
-      thBtn?.classList.add('active');
-    }
+    const updateActiveButton = (lang: string) => {
+      enBtn?.classList.toggle('active', lang === 'en');
+      thBtn?.classList.toggle('active', lang === 'th');
+    };
+
+    updateActiveButton(language);
+
+    enBtn?.addEventListener('click', (e) => {
+      e.preventDefault();
+      useLanguageStore.getState().setLanguage('en');
+    });
+
+    thBtn?.addEventListener('click', (e) => {
+      e.preventDefault();
+      useLanguageStore.getState().setLanguage('th');
+    });
   });
 </script>

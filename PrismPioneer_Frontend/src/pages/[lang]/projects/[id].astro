@@ -1,16 +1,28 @@
 ---
 import Layout from '@/layouts/Landing.astro';
 import { projects } from '@/data/projects';
+import type { Project } from '@/data/projects';
 import RainbowDivider from '@/components/Landing/RainbowDivider.astro';
 
 export async function getStaticPaths() {
-  return projects.map((project) => ({
-    params: { id: project.id },
-    props: { project },
-  }));
+  const paths: { params: { lang: string; id: string }; props: { project: Project } }[] = [];
+  ['en', 'th'].forEach((lang) => {
+    projects.forEach((project) => {
+      paths.push({
+        params: { lang, id: project.id },
+        props: { project }
+      });
+    });
+  });
+  return paths;
+}
+
+interface Props {
+  project: Project;
 }
 
 const { project } = Astro.props;
+const { lang } = Astro.params;
 const { 
   title, 
   description, 
@@ -33,7 +45,7 @@ const {
       <div class="hero-background"></div>
       <div class="container">
         <div class="hero-content">
-          <a href="/#projects" class="back-link">
+          <a href={`/${lang}/project`} class="back-link">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M19 12H5M12 19l-7-7 7-7"/>
             </svg>
@@ -80,7 +92,7 @@ const {
             <section class="content-section">
               <h2 class="section-title">Implementation</h2>
               <ul class="detail-list">
-                {implementation.map(item => (
+                {implementation.map((item: string) => (
                   <li class="detail-item">
                     <span class="bullet" style={`background: ${color};`}></span>
                     <p>{item}</p>
@@ -115,7 +127,7 @@ const {
             <div class="side-card gallery-card">
               <h3 class="side-title">Gallery</h3>
               <div class="gallery-grid">
-                {images.map(image => (
+                {images.map((image: string) => (
                   <div class="gallery-item">
                     <div class="image-placeholder" style={`background: linear-gradient(135deg, ${color}11, ${color}22);`}>
                       <span class="img-text">Project Screenshot</span>

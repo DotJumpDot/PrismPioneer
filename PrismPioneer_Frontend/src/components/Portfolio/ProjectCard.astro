@@ -8,9 +8,11 @@ interface Props {
 
 const { project, index } = Astro.props;
 const { id, title, description, category, date, featured, color, icon, techStack } = project;
+const currentPath = Astro.url.pathname;
+const lang = currentPath.split('/')[1] || 'en';
 ---
 
-<a href={`/projects/${id}`} class="project-card scroll-trigger" data-index={index} style={`--project-color: ${color};`}>
+<a href={`/${lang}/projects/${id}`} class="project-card scroll-trigger" data-index={index} style={`--project-color: ${color};`}>
   <div class="card-inner">
     <div class="card-image">
       <div class="image-placeholder" style={`background: linear-gradient(135deg, ${color}22, ${color}44);`}>

@@ -4,6 +4,8 @@ import { getRecentProjects } from '@/data/projects';
 import RainbowDivider from '../Landing/RainbowDivider.astro';
 
 const projects = getRecentProjects(6);
+const currentPath = Astro.url.pathname;
+const lang = currentPath.split('/')[1] || 'en';
 ---
 
 <section id="projects" class="project-gallery pixel-scanline">
@@ -39,7 +41,7 @@ const projects = getRecentProjects(6);
     </div>
 
     <div class="gallery-footer">
-      <a href="/news" class="view-all-btn">
+      <a href={`/${lang}/project`} class="view-all-btn">
         <span class="btn-text">View All Projects</span>
         <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M5 12h14M12 5l7 7-7 7"/>

@@ -14,7 +14,8 @@
       "games": "GAMES",
       "players": "PLAYERS",
       "nostalgia": "NOSTALGIA",
-      "scrollDown": "SCROLL DOWN"
+      "scrollDown": "SCROLL DOWN",
+      "description": "Building innovative solutions at the intersection of AI, web development, and user experience."
     },
     "features": {
       "prefix": "FEATURE",

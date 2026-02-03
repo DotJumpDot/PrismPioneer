@@ -1,0 +1,417 @@
+---
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'en' } },
+    { params: { lang: 'th' } },
+  ];
+}
+
+import Layout from '@/layouts/Landing.astro';
+import { projects, categories } from '@/data/projects';
+import ProjectCard from '@/components/Portfolio/ProjectCard.astro';
+import RainbowDivider from '@/components/Landing/RainbowDivider.astro';
+
+const allProjects = [...projects].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+---
+
+<Layout title="News & Projects" description="Browse all projects and articles from DotJumpDot. Filter by category and explore the implementation details.">
+  <section class="news-page pixel-scanline">
+    <div class="news-hero">
+      <div class="container">
+        <div class="header-decoration">
+          <span class="deco-line"></span>
+          <span class="deco-dot"></span>
+          <span class="deco-line"></span>
+        </div>
+        
+        <h1 class="news-title">
+          <span class="title-main neon-glow">PROJECTS</span>
+        </h1>
+        
+        <p class="news-subtitle">A centralized index of all my work, technical articles, and project updates.</p>
+        
+        <div class="header-decoration">
+          <span class="deco-line"></span>
+          <span class="deco-dot"></span>
+          <span class="deco-line"></span>
+        </div>
+      </div>
+    </div>
+
+    <RainbowDivider height={4} />
+
+    <div class="news-content">
+      <div class="container">
+        <div class="filter-section">
+          <div class="filter-label">FILTER BY CATEGORY:</div>
+          <div class="category-filters">
+            {categories.map(category => (
+              <button class="filter-btn" data-category={category}>
+                <span class="btn-pixel"></span>
+                <span class="btn-text">{category}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div class="projects-grid" id="projects-grid">
+          {allProjects.map((project, index) => (
+            <div class="project-wrapper" data-category={project.category}>
+              <ProjectCard project={project} index={index} />
+            </div>
+          ))}
+        </div>
+
+        <div class="no-results" id="no-results">
+          <div class="no-results-content">
+            <span class="no-results-icon">🔍</span>
+            <p>No projects found in this category.</p>
+            <button class="reset-btn">Reset Filters</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .news-page {
+    background: #0a0a15;
+    min-height: 100vh;
+    padding-top: 80px;
+  }
+
+  .news-hero {
+    padding: 80px 0;
+    text-align: center;
+    background: linear-gradient(180deg, #1a1a2e 0%, #0a0a15 100%);
+  }
+
+  .header-decoration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin: 24px 0;
+  }
+
+  .deco-line {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #9400D3, transparent);
+    opacity: 0.6;
+  }
+
+  .deco-dot {
+    width: 8px;
+    height: 8px;
+    background: #9400D3;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #9400D3, 0 0 20px #9400D3;
+    animation: dotPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes dotPulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.2); opacity: 1; }
+  }
+
+  .news-title {
+    font-family: 'Press Start 2P', cursive;
+    margin-bottom: 16px;
+  }
+
+  .title-main {
+    display: block;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: bold;
+    line-height: 1.2;
+    color: #fff;
+    text-shadow: 
+      0 0 10px #9400D3,
+      0 0 20px #9400D3,
+      0 0 30px #9400D3;
+  }
+
+  @keyframes neonGlow {
+    0%, 100% { 
+      text-shadow: 
+        0 0 10px #9400D3,
+        0 0 20px #9400D3,
+        0 0 30px #9400D3;
+    }
+    50% { 
+      text-shadow: 
+        0 0 15px #9400D3,
+        0 0 30px #9400D3,
+        0 0 45px #9400D3;
+    }
+  }
+
+  .neon-glow {
+    animation: neonGlow 2s ease-in-out infinite;
+  }
+
+  .news-subtitle {
+    font-size: 16px;
+    color: #888;
+    max-width: 600px;
+    margin: 0 auto 24px;
+    line-height: 1.6;
+  }
+
+  .news-content {
+    padding: 60px 0 120px;
+  }
+
+  .filter-section {
+    margin-bottom: 60px;
+  }
+
+  .filter-label {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
+    color: #555;
+    margin-bottom: 24px;
+    text-align: center;
+    letter-spacing: 1px;
+  }
+
+  .category-filters {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    background: #151525;
+    border: 2px solid #2a2a3e;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .filter-btn:hover {
+    border-color: #9400D3;
+    background: #1a1a2e;
+  }
+
+  .filter-btn.active {
+    background: #9400D3;
+    border-color: #9400D3;
+  }
+
+  .btn-pixel {
+    width: 6px;
+    height: 6px;
+    background: #555;
+    border-radius: 1px;
+    transition: all 0.3s ease;
+  }
+
+  .filter-btn:hover .btn-pixel {
+    background: #9400D3;
+    box-shadow: 0 0 10px #9400D3;
+  }
+
+  .filter-btn.active .btn-pixel {
+    background: #fff;
+    box-shadow: 0 0 10px #fff;
+  }
+
+  .btn-text {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 9px;
+    color: #888;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+  }
+
+  .filter-btn:hover .btn-text,
+  .filter-btn.active .btn-text {
+    color: #fff;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  @media (min-width: 768px) {
+    .projects-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .projects-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .project-wrapper {
+    transition: all 0.4s ease;
+  }
+
+  .project-wrapper.hidden {
+    display: none;
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  .no-results {
+    display: none;
+    padding: 80px 0;
+    text-align: center;
+  }
+
+  .no-results.visible {
+    display: block;
+    animation: fadeIn 0.4s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .no-results-icon {
+    font-size: 64px;
+    display: block;
+    margin-bottom: 24px;
+  }
+
+  .no-results p {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 32px;
+  }
+
+  .reset-btn {
+    padding: 16px 32px;
+    background: #9400D3;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .reset-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(148, 0, 211, 0.3);
+  }
+
+  @media (max-width: 768px) {
+    .header-decoration {
+      gap: 12px;
+      margin: 16px 0;
+    }
+
+    .deco-line {
+      width: 40px;
+    }
+
+    .deco-dot {
+      width: 6px;
+      height: 6px;
+    }
+
+    .news-hero {
+      padding: 60px 0;
+    }
+
+    .news-subtitle {
+      font-size: 13px;
+    }
+
+    .filter-section {
+      margin-bottom: 40px;
+    }
+
+    .category-filters {
+      gap: 8px;
+    }
+
+    .filter-btn {
+      padding: 10px 16px;
+    }
+
+    .btn-text {
+      font-size: 8px;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectWrappers = document.querySelectorAll('.project-wrapper');
+    const grid = document.getElementById('projects-grid');
+    const noResults = document.getElementById('no-results');
+    const resetBtn = document.querySelector('.reset-btn');
+
+    // Set initial active state to "All"
+    const allBtn = document.querySelector('[data-category="All"]');
+    if (allBtn) allBtn.classList.add('active');
+
+    function filterProjects(category: string) {
+      let visibleCount = 0;
+
+      projectWrappers.forEach(wrapper => {
+        const projectCategory = (wrapper as HTMLElement).dataset.category;
+        if (category === 'All' || projectCategory === category) {
+          wrapper.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          wrapper.classList.add('hidden');
+        }
+      });
+
+      // Update grid and no-results visibility
+      if (visibleCount === 0) {
+        grid?.classList.add('hidden');
+        noResults?.classList.add('visible');
+      } else {
+        grid?.classList.remove('hidden');
+        noResults?.classList.remove('visible');
+      }
+
+      // Re-trigger animations for visible items
+      const visibleItems = document.querySelectorAll('.project-wrapper:not(.hidden) .scroll-trigger');
+      visibleItems.forEach(item => {
+        item.classList.remove('animate-in');
+        // Force reflow
+        void (item as HTMLElement).offsetWidth;
+        item.classList.add('animate-in');
+      });
+    }
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const category = (btn as HTMLElement).dataset.category || 'All';
+        
+        // Update button states
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        filterProjects(category);
+      });
+    });
+
+    resetBtn?.addEventListener('click', () => {
+      filterButtons.forEach(b => b.classList.remove('active'));
+      if (allBtn) allBtn.classList.add('active');
+      filterProjects('All');
+    });
+  });
+</script>

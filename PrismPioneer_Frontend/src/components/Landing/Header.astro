@@ -1,26 +1,29 @@
 ---
 import LanguageSwitcher from './LanguageSwitcher.astro';
+import { getLanguageFromURL } from '@/utils/i18n';
+
+const lang = getLanguageFromURL(Astro.url);
 
 const navItems = {
   en: [
-    { href: '/', label: 'Home' },
-    { href: '/project', label: 'Projects' },
-    { href: '/about', label: 'About Me' }
+    { href: '/en', label: 'Home' },
+    { href: '/en/project', label: 'Projects' },
+    { href: '/en/about', label: 'About Me' }
   ],
   th: [
-    { href: '/', label: 'หน้าหลัก' },
-    { href: '/project', label: 'โปรเจกต์' },
-    { href: '/about', label: 'เกี่ยวกับฉัน' }
+    { href: '/th', label: 'หน้าหลัก' },
+    { href: '/th/project', label: 'โปรเจกต์' },
+    { href: '/th/about', label: 'เกี่ยวกับฉัน' }
   ]
 };
 
-const currentNav = navItems.en;
+const currentNav = navItems[lang];
 ---
 
 <header class="pixel-header pixel-scanline">
   <div class="container">
     <div class="header-content">
-      <a href="/" class="logo">
+      <a href={`/${lang}`} class="logo">
         <span class="logo-accent">PRISM PIONEER</span>
       </a>
       

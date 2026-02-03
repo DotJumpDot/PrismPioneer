@@ -19,6 +19,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated project data with accurate GitHub repository information
 - Header redesign with DotJumpDot branding and Prism Pioneer subtitle
 
+## [0.2.2] - 2026-02-03
+
+### Fixed
+
+- Fixed translation property access in `Hero.astro` by implementing URL-based language detection
+- Resolved TypeScript error (TS2339) in i18n implementation
+
+### Added
+
+- Installed `i18next` dependency to `package.json`
+- Added `getLanguageFromURL` helper to `i18n.ts` for robust server-side language detection
+
 ## [0.2.1] - 2026-02-03
 
 ### Changed

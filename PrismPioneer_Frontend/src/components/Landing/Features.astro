@@ -2,52 +2,6 @@
 import PixelIcon from './PixelIcon.astro';
 import SectionHeader from './SectionHeader.astro';
 import PixelSprite from './PixelSprite.astro';
-
-interface Feature {
-  icon: 'gamepad' | 'star' | 'trophy' | 'coin' | 'heart' | 'lightning' | 'music' | 'settings';
-  title: string;
-  description: string;
-  color: string;
-}
-
-const features: Feature[] = [
-  {
-    icon: 'gamepad',
-    title: 'Classic Gaming',
-    description: 'Experience the golden age of arcade gaming with authentic 8-bit graphics and sound.',
-    color: '#FF0000'
-  },
-  {
-    icon: 'trophy',
-    title: 'Leaderboards',
-    description: 'Compete with players worldwide and climb the ranks to become the ultimate champion.',
-    color: '#FF7F00'
-  },
-  {
-    icon: 'star',
-    title: 'Unlockables',
-    description: 'Discover hidden secrets and unlock special characters, power-ups, and achievements.',
-    color: '#FFFF00'
-  },
-  {
-    icon: 'lightning',
-    title: 'Fast-Paced',
-    description: 'Non-stop action with quick gameplay sessions perfect for both casual and hardcore gamers.',
-    color: '#00FF00'
-  },
-  {
-    icon: 'music',
-    title: 'Retro Soundtrack',
-    description: 'Immerse yourself in nostalgic chiptune music and authentic arcade sound effects.',
-    color: '#0000FF'
-  },
-  {
-    icon: 'heart',
-    title: 'Community',
-    description: 'Join a passionate community of retro gaming enthusiasts and share your adventures.',
-    color: '#9400D3'
-  }
-];
 ---
 
 <section id="features" class="features pixel-scanline">
@@ -60,7 +14,7 @@ const features: Feature[] = [
       <SectionHeader 
         prefix="FEATURE" 
         title="SHOWCASE" 
-        subtitle="Discover what makes Prism Pioneer the ultimate retro gaming experience"
+        subtitle="Discover what makes Prism Pioneer ultimate retro gaming experience"
       />
       <div class="header-sprite right">
         <PixelSprite type="alien" color="#00FF00" size={48} animation="float" />
@@ -68,16 +22,54 @@ const features: Feature[] = [
     </div>
 
     <div class="features-grid">
-      {features.map((feature, index) => (
-        <div class="feature-card" style={`--feature-color: ${feature.color}; --delay: ${index * 0.1}s;`}>
-          <div class="feature-icon-wrapper">
-            <PixelIcon icon={feature.icon} size={64} color={feature.color} />
-          </div>
-          <h3 class="feature-title">{feature.title}</h3>
-          <p class="feature-description">{feature.description}</p>
-          <div class="feature-decoration"></div>
+      <div class="feature-card" style="--feature-color: #FF0000; --delay: 0s;">
+        <div class="feature-icon-wrapper">
+          <PixelIcon icon="gamepad" size={64} color="#FF0000" />
         </div>
-      ))}
+        <h3 class="feature-title">Classic Gaming</h3>
+        <p class="feature-description">Experience golden age of arcade gaming with authentic 8-bit graphics and sound.</p>
+        <div class="feature-decoration"></div>
+      </div>
+      <div class="feature-card" style="--feature-color: #FF7F00; --delay: 0.1s;">
+        <div class="feature-icon-wrapper">
+          <PixelIcon icon="trophy" size={64} color="#FF7F00" />
+        </div>
+        <h3 class="feature-title">Leaderboards</h3>
+        <p class="feature-description">Compete with players worldwide and climb ranks to become ultimate champion.</p>
+        <div class="feature-decoration"></div>
+      </div>
+      <div class="feature-card" style="--feature-color: #FFFF00; --delay: 0.2s;">
+        <div class="feature-icon-wrapper">
+          <PixelIcon icon="star" size={64} color="#FFFF00" />
+        </div>
+        <h3 class="feature-title">Unlockables</h3>
+        <p class="feature-description">Discover hidden secrets and unlock special characters, power-ups, and achievements.</p>
+        <div class="feature-decoration"></div>
+      </div>
+      <div class="feature-card" style="--feature-color: #00FF00; --delay: 0.3s;">
+        <div class="feature-icon-wrapper">
+          <PixelIcon icon="lightning" size={64} color="#00FF00" />
+        </div>
+        <h3 class="feature-title">Fast-Paced</h3>
+        <p class="feature-description">Non-stop action with quick gameplay sessions perfect for both casual and hardcore gamers.</p>
+        <div class="feature-decoration"></div>
+      </div>
+      <div class="feature-card" style="--feature-color: #0000FF; --delay: 0.4s;">
+        <div class="feature-icon-wrapper">
+          <PixelIcon icon="music" size={64} color="#0000FF" />
+        </div>
+        <h3 class="feature-title">Retro Soundtrack</h3>
+        <p class="feature-description">Immerse yourself in nostalgic chiptune music and authentic arcade sound effects.</p>
+        <div class="feature-decoration"></div>
+      </div>
+      <div class="feature-card" style="--feature-color: #9400D3; --delay: 0.5s;">
+        <div class="feature-icon-wrapper">
+          <PixelIcon icon="heart" size={64} color="#9400D3" />
+        </div>
+        <h3 class="feature-title">Community</h3>
+        <p class="feature-description">Join a passionate community of retro gaming enthusiasts and share your adventures.</p>
+        <div class="feature-decoration"></div>
+      </div>
     </div>
 
     <div class="features-stats">
