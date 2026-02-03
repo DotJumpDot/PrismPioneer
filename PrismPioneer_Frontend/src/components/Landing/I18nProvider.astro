@@ -1,0 +1,17 @@
+---
+import { translations } from '@/utils/i18n'
+---
+
+<script>
+  export interface Props {
+    translations: Record<string, any>;
+  }
+
+  const { translations } = Astro.props;
+</script>
+
+<script define:vars={{ translations }}>
+  window.__TRANSLATIONS__ = translations;
+</script>
+
+<slot />

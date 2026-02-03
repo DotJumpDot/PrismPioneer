@@ -1,0 +1,80 @@
+{
+  "nav": {
+    "home": "Home",
+    "projects": "Projects",
+    "about": "About Me",
+    "github": "GitHub"
+  },
+  "landing": {
+    "hero": {
+      "welcome": "WELCOME TO",
+      "subtitle": "Dive into a world of 8-bit adventure and retro gaming magic!",
+      "startGame": "START GAME",
+      "explore": "EXPLORE",
+      "games": "GAMES",
+      "players": "PLAYERS",
+      "nostalgia": "NOSTALGIA",
+      "scrollDown": "SCROLL DOWN"
+    },
+    "features": {
+      "prefix": "FEATURE",
+      "title": "SHOWCASE",
+      "subtitle": "Discover what makes Prism Pioneer the ultimate retro gaming experience",
+      "gaming": "Classic Gaming",
+      "gamingDesc": "Experience the golden age of arcade gaming with authentic 8-bit graphics and sound.",
+      "leaderboards": "Leaderboards",
+      "leaderboardsDesc": "Compete with players worldwide and climb the ranks to become the ultimate champion.",
+      "unlockables": "Unlockables",
+      "unlockablesDesc": "Discover hidden secrets and unlock special characters, power-ups, and achievements.",
+      "fastPaced": "Fast-Paced",
+      "fastPacedDesc": "Non-stop action with quick gameplay sessions perfect for both casual and hardcore gamers.",
+      "soundtrack": "Retro Soundtrack",
+      "soundtrackDesc": "Immerse yourself in nostalgic chiptune music and authentic arcade sound effects.",
+      "community": "Community",
+      "communityDesc": "Join a passionate community of retro gaming enthusiasts and share your adventures.",
+      "gaming247": "GAMING",
+      "freeToPlay": "TO PLAY",
+      "noAds": "NO ADS"
+    }
+  },
+  "portfolio": {
+    "hero": {
+      "name": "DotJumpDot",
+      "subtitle": "Prism Pioneer",
+      "description": "Building innovative solutions at the intersection of AI, web development, and user experience.",
+      "projects": "Projects",
+      "contributions": "Contributions",
+      "yearsExp": "Years Exp",
+      "exploreWork": "Explore Work",
+      "github": "GitHub",
+      "scrollToExplore": "Scroll to explore"
+    }
+  },
+  "about": {
+    "title": "ABOUT ME",
+    "subtitle": "Creative Developer • AI Enthusiast • Problem Solver",
+    "theStory": "THE STORY",
+    "storyText1": "Hello! I'm DotJumpDot, a passionate developer dedicated to building innovative solutions that push the boundaries of what's possible on the web.",
+    "storyText2": "My journey in development started with a fascination for interactive experiences and has evolved into a deep expertise in modern web technologies and AI integration. I believe that great software is a blend of technical excellence and creative vision.",
+    "storyText3": "Currently, I focus on building tools that enhance developer productivity—like my VS Code extensions—and exploring the potential of AI through platforms like Axiomancer.",
+    "experience": "EXPERIENCE",
+    "comfortSkills": "COMFORT SKILLS",
+    "connect": "CONNECT",
+    "emailMe": "Email Me",
+    "github": "GitHub",
+    "languages": "Languages",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "database": "Database"
+  },
+  "projects": {
+    "title": "PROJECTS",
+    "subtitle": "A centralized index of all my work, technical articles, and project updates.",
+    "filterByCategory": "FILTER BY CATEGORY:",
+    "noResults": "No projects found in this category.",
+    "resetFilters": "Reset Filters"
+  },
+  "lang": {
+    "switch": "Language"
+  }
+}

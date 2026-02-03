@@ -1,0 +1,206 @@
+<div class="lang-switcher pixel-container">
+  <a href="?lang=en" class="lang-btn en-btn" aria-label="Switch to English">
+    <span class="lang-text">EN</span>
+    <span class="lang-pixel"></span>
+  </a>
+  <a href="?lang=th" class="lang-btn th-btn" aria-label="Switch to Thai">
+    <span class="lang-text">TH</span>
+    <span class="lang-pixel"></span>
+  </a>
+  <div class="lang-glow"></div>
+</div>
+
+<style>
+  .lang-switcher {
+    position: relative;
+    display: flex;
+    gap: 4px;
+    padding: 4px;
+    background: #9400D3
+    border: 4px solid;
+    border-image: #9400D3
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .lang-glow {
+    position: absolute;
+    inset: -4px;
+    background: #9400D3
+    border-radius: 12px;
+    opacity: 0;
+    filter: blur(8px);
+    z-index: -1;
+    transition: opacity 0.3s ease;
+    animation: rainbowGlow 3s linear infinite;
+  }
+
+  @keyframes rainbowGlow {
+    0% { filter: blur(8px) hue-rotate(0deg); }
+    100% { filter: blur(8px) hue-rotate(360deg); }
+  }
+
+  .lang-switcher:hover .lang-glow {
+    opacity: 0.5;
+  }
+
+  .lang-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: #151525;
+    border: 3px solid #2a2a3e;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    overflow: hidden;
+    text-decoration: none;
+  }
+
+  .lang-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+    pointer-events: none;
+  }
+
+  .lang-btn:hover {
+    transform: scale(1.1);
+    border-color: #FFD700;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+  }
+
+  .lang-btn.active {
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    border-color: #FFD700;
+    box-shadow: 
+      0 0 20px rgba(255, 215, 0, 0.5),
+      inset 0 0 10px rgba(255, 255, 255, 0.2);
+  }
+
+  .lang-btn.active .lang-text {
+    color: #000;
+    text-shadow: none;
+  }
+
+  .lang-btn:active {
+    transform: scale(0.95);
+  }
+
+  .lang-text {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
+    font-weight: bold;
+    color: #FFD700;
+    text-shadow: 2px 2px 0 #FF6600;
+    transition: all 0.2s ease;
+    z-index: 1;
+  }
+
+  .lang-pixel {
+    position: absolute;
+    bottom: 6px;
+    right: 6px;
+    width: 6px;
+    height: 6px;
+    background: #FFD700;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    animation: pixelPulse 1s ease infinite;
+  }
+
+  @keyframes pixelPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+  }
+
+  .lang-btn:hover .lang-pixel {
+    opacity: 1;
+  }
+
+  .lang-btn.active .lang-pixel {
+    background: #000;
+    opacity: 1;
+  }
+
+  .en-btn.active {
+    background: linear-gradient(135deg, #00FF00, #00CC00);
+    border-color: #00FF00;
+    box-shadow: 
+      0 0 20px rgba(0, 255, 0, 0.5),
+      inset 0 0 10px rgba(255, 255, 255, 0.2);
+  }
+
+  .th-btn.active {
+    background: linear-gradient(135deg, #0080FF, #0050AA);
+    border-color: #0080FF;
+    box-shadow: 
+      0 0 20px rgba(0, 128, 255, 0.5),
+      inset 0 0 10px rgba(255, 255, 255, 0.2);
+  }
+
+  .en-btn:not(.active):hover {
+    border-color: #00FF00;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+  }
+
+  .th-btn:not(.active):hover {
+    border-color: #0080FF;
+    box-shadow: 0 0 15px rgba(0, 128, 255, 0.3);
+  }
+
+  @media (max-width: 768px) {
+    .lang-btn {
+      width: 40px;
+      height: 40px;
+    }
+
+    .lang-text {
+      font-size: 10px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .lang-switcher {
+      gap: 2px;
+      padding: 2px;
+    }
+
+    .lang-btn {
+      width: 36px;
+      height: 36px;
+      border-width: 2px;
+    }
+
+    .lang-text {
+      font-size: 9px;
+    }
+  }
+</style>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const langParam = params.get('lang');
+
+  if (langParam === 'en' || langParam === 'th') {
+    localStorage.setItem('language', langParam);
+    window.history.replaceState({}, '', window.location.pathname);
+  }
+
+  const currentLang = localStorage.getItem('language') || 'en';
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    const enBtn = document.querySelector('.en-btn') as HTMLElement;
+    const thBtn = document.querySelector('.th-btn') as HTMLElement;
+
+    if (currentLang === 'en') {
+      enBtn?.classList.add('active');
+    } else if (currentLang === 'th') {
+      thBtn?.classList.add('active');
+    }
+  });
+</script>

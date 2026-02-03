@@ -19,6 +19,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated project data with accurate GitHub repository information
 - Header redesign with DotJumpDot branding and Prism Pioneer subtitle
 
+## [0.2.1] - 2026-02-03
+
+### Changed
+
+- Expanded Header layout to full-width to move items towards screen edges
+- Increased navigation item spacing in Header for better readability
+
 ## [0.2.0] - 2026-02-03
 
 ### Changed

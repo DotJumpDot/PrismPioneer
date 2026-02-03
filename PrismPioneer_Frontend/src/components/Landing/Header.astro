@@ -1,9 +1,20 @@
 ---
-const navItems = [
-  { href: '/', label: 'Home' },
-  { href: '/news', label: 'News' },
-  { href: '/about', label: 'About Me' }
-];
+import LanguageSwitcher from './LanguageSwitcher.astro';
+
+const navItems = {
+  en: [
+    { href: '/', label: 'Home' },
+    { href: '/project', label: 'Projects' },
+    { href: '/about', label: 'About Me' }
+  ],
+  th: [
+    { href: '/', label: 'หน้าหลัก' },
+    { href: '/project', label: 'โปรเจกต์' },
+    { href: '/about', label: 'เกี่ยวกับฉัน' }
+  ]
+};
+
+const currentNav = navItems.en;
 ---
 
 <header class="pixel-header pixel-scanline">
@@ -14,7 +25,7 @@ const navItems = [
       </a>
       
       <nav class="nav-desktop">
-        {navItems.map(item => (
+        {currentNav.map(item => (
           <a href={item.href} class="nav-link">
             <span class="nav-pixel"></span>
             <span class="nav-text">{item.label}</span>
@@ -27,6 +38,7 @@ const navItems = [
             <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
           </svg>
         </a>
+        <LanguageSwitcher />
       </nav>
 
       <button class="mobile-menu-btn" aria-label="Toggle menu">
@@ -38,7 +50,7 @@ const navItems = [
   </div>
 
   <nav class="nav-mobile">
-    {navItems.map(item => (
+    {currentNav.map(item => (
       <a href={item.href} class="nav-link-mobile">
         {item.label}
       </a>
@@ -46,6 +58,9 @@ const navItems = [
     <a href="https://github.com/DotJumpDot" target="_blank" rel="noopener noreferrer" class="nav-link-mobile">
       GitHub
     </a>
+    <div class="mobile-lang-switcher">
+      <LanguageSwitcher />
+    </div>
   </nav>
 </header>
 
@@ -67,6 +82,11 @@ const navItems = [
     justify-content: space-between;
     align-items: center;
     padding: 20px 0;
+  }
+
+  .pixel-header .container {
+    max-width: 100%;
+    padding: 0 40px;
   }
 
   .logo {
@@ -109,7 +129,7 @@ const navItems = [
 
   .nav-desktop {
     display: flex;
-    gap: 32px;
+    gap: 40px;
     align-items: center;
   }
 
@@ -227,6 +247,12 @@ const navItems = [
     background: linear-gradient(90deg, #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF);
     color: #FFFFFF;
     padding-left: 24px;
+  }
+
+  .mobile-lang-switcher {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
   }
 
   @media (max-width: 1024px) {
