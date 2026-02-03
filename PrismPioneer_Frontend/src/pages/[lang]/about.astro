@@ -8,25 +8,30 @@ export function getStaticPaths() {
 
 import Layout from '@/layouts/Landing.astro';
 import RainbowDivider from '@/components/Landing/RainbowDivider.astro';
+import { getTranslations } from '@/utils/i18n';
+import type { Language } from '@/utils/i18n';
+
+const { lang } = Astro.params;
+const t = getTranslations(lang as Language);
 
 const skillCategories = [
   {
-    title: 'Languages',
+    title: t.about.languages,
     icon: '💻',
     skills: ['TypeScript', 'Python', 'HTML', 'CSS']
   },
   {
-    title: 'Frontend',
+    title: t.about.frontend,
     icon: '🎨',
     skills: ['NextJS', 'Vue', 'Svelte']
   },
   {
-    title: 'Backend',
+    title: t.about.backend,
     icon: '⚙️',
     skills: ['NestJS', 'ElysiaJS', 'FastAPI']
   },
   {
-    title: 'Database',
+    title: t.about.database,
     icon: '🗄️',
     skills: ['PostgreSQL', 'MySQL', 'MongoDB', 'SQLite']
   }
@@ -54,7 +59,7 @@ const experience = [
 ];
 ---
 
-<Layout title="About Me" description="Learn more about DotJumpDot - a creative developer specializing in AI, web development, and interactive tools.">
+<Layout title={t.about.title} description="Learn more about DotJumpDot - a creative developer specializing in AI, web development, and interactive tools.">
   <section class="about-page pixel-scanline">
     <div class="about-hero">
       <div class="container">
@@ -70,9 +75,9 @@ const experience = [
         
         <div class="hero-content">
           <h1 class="about-title">
-            <span class="title-main neon-glow">ABOUT ME</span>
+            <span class="title-main neon-glow">{t.about.title}</span>
           </h1>
-          <p class="about-subtitle">Creative Developer • AI Enthusiast • Problem Solver</p>
+          <p class="about-subtitle">{t.about.subtitle}</p>
         </div>
         
         <div class="header-decoration">
@@ -90,16 +95,16 @@ const experience = [
         <div class="content-grid">
           <div class="main-bio">
             <section class="bio-section">
-              <h2 class="section-title">THE STORY</h2>
+              <h2 class="section-title">{t.about.theStory}</h2>
               <div class="bio-text">
-                <p>Hello! I'm DotJumpDot, a passionate developer dedicated to building innovative solutions that push the boundaries of what's possible on the web.</p>
-                <p>My journey in development started with a fascination for interactive experiences and has evolved into a deep expertise in modern web technologies and AI integration. I believe that great software is a blend of technical excellence and creative vision.</p>
-                <p>Currently, I focus on building tools that enhance developer productivity—like my VS Code extensions—and exploring the potential of AI through platforms like Axiomancer.</p>
+                <p>{t.about.storyText1}</p>
+                <p>{t.about.storyText2}</p>
+                <p>{t.about.storyText3}</p>
               </div>
             </section>
 
             <section class="bio-section">
-              <h2 class="section-title">EXPERIENCE</h2>
+              <h2 class="section-title">{t.about.experience}</h2>
               <div class="experience-timeline">
                 {experience.map(item => (
                   <div class="timeline-item">
@@ -120,7 +125,7 @@ const experience = [
 
           <aside class="side-info">
             <section class="side-section skills-card">
-              <h3 class="side-title">COMFORT SKILLS</h3>
+              <h3 class="side-title">{t.about.comfortSkills}</h3>
               <div class="skills-categories">
                 {skillCategories.map(category => (
                   <div class="skill-category">
@@ -139,17 +144,17 @@ const experience = [
             </section>
 
             <section class="side-section contact-card">
-              <h3 class="side-title">CONNECT</h3>
+              <h3 class="side-title">{t.about.connect}</h3>
               <div class="contact-links">
                 <a href="mailto:contact@dotjumpdot.com" class="contact-btn email">
                   <span class="btn-icon">📧</span>
-                  <span>Email Me</span>
+                  <span>{t.about.emailMe}</span>
                 </a>
                 <a href="https://github.com/DotJumpDot" target="_blank" rel="noopener noreferrer" class="contact-btn github">
                   <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
                   </svg>
-                  <span>GitHub</span>
+                  <span>{t.about.github}</span>
                 </a>
               </div>
             </section>

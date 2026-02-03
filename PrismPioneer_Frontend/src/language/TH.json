@@ -77,5 +77,52 @@
   },
   "lang": {
     "switch": "ภาษา"
+  },
+  "workHighlights": {
+    "title": "ผลงานเด่น",
+    "subtitle": "โปรเจกต์ที่คัดสรรมาเพื่อแสดงความเชี่ยวชาญทางเทคนิคและการแก้ปัญหาอย่างสร้างสรรค์",
+    "viewOnGithub": "ดูบน GitHub"
+  },
+  "techStack": {
+    "title": "เทคโนโลยีที่ใช้",
+    "subtitle": "เทคโนโลยีและเครื่องมือที่รวบรวมจากประสบการณ์การทำงานจริง",
+    "error": "ไม่สามารถโหลดข้อมูลได้ โปรดลองใหม่อีกครั้งในภายหลัง",
+    "categories": {
+      "Languages": "ภาษา",
+      "Frontend": "Frontend",
+      "Backend": "Backend",
+      "Database": "ฐานข้อมูล",
+      "Authentication": "การยืนยันตัวตน",
+      "UI Frameworks": "UI Frameworks",
+      "Runtime": "Runtime",
+      "Deploy": "Deploy",
+      "Misc Library": "ไลบรารีอื่นๆ"
+    }
+  },
+  "miniProfile": {
+    "title": "DotJumpDot",
+    "subtitle": "Prism Pioneer",
+    "tagline": "นักพัฒนาสร้างสรรค์ • ผู้รัก AI • นักแก้ปัญหา",
+    "bio": "นักพัฒนาผู้หลงใหลในการสร้างนวัตกรรมที่จุดบรรจบของ AI, การพัฒนาเว็บ และประสบการณ์ผู้ใช้ สร้างสรรค์เครื่องมือที่สร้างความแตกต่างให้กับชุมชนนักพัฒนา",
+    "stats": {
+      "projects": "โปรเจกต์",
+      "contributions": "การมีส่วนร่วม",
+      "yearsExp": "ปีประสบการณ์"
+    },
+    "actions": {
+      "aboutMe": "เกี่ยวกับฉัน",
+      "github": "GitHub"
+    }
+  },
+  "projectDetail": {
+    "backToProjects": "กลับไปที่โปรเจกต์",
+    "github": "GitHub",
+    "liveDemo": "ดูตัวอย่าง",
+    "overview": "ภาพรวม",
+    "implementation": "การดำเนินการ",
+    "outcomes": "ผลลัพธ์หลัก",
+    "techStack": "เทคโนโลยีที่ใช้",
+    "gallery": "แกลเลอรี",
+    "screenshot": "ภาพหน้าจอโปรเจกต์"
   }
 }

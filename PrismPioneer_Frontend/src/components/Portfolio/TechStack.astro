@@ -1,5 +1,9 @@
 ---
 import { projects } from '@/data/projects';
+import { getTranslations, getLanguageFromURL } from '@/utils/i18n';
+
+const lang = getLanguageFromURL(Astro.url);
+const t = getTranslations(lang);
 
 interface TechCategory {
   category: string;
@@ -215,7 +219,7 @@ const getGridSpan = (category: string): string => {
           <div class={`tech-category ${category.category === 'Misc Library' ? 'wide-category' : ''}`} style={`animation-delay: ${catIndex * 0.15}s; grid-column: ${getGridSpan(category.category)}`}>
             <h3 class="category-title">
               <span class="category-icon"></span>
-              {category.category}
+              {(t.techStack.categories as any)[category.category] || category.category}
             </h3>
             
             <div class={`tech-grid ${category.category === 'Misc Library' ? 'wide-grid' : ''}`}>
@@ -233,7 +237,7 @@ const getGridSpan = (category: string): string => {
     ) : (
       <div class="error-message">
         <span class="error-icon">⚠️</span>
-        <p>Unable to load tech stack data. Please check back later.</p>
+        <p>{t.techStack.error}</p>
       </div>
     )}
   </div>

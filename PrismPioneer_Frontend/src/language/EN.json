@@ -77,5 +77,52 @@
   },
   "lang": {
     "switch": "Language"
+  },
+  "workHighlights": {
+    "title": "WORK HIGHLIGHTS",
+    "subtitle": "Selected projects showcasing technical expertise and creative problem-solving",
+    "viewOnGithub": "View on GitHub"
+  },
+  "techStack": {
+    "title": "TECH STACK",
+    "subtitle": "Technologies and tools compiled from actual project experience",
+    "error": "Unable to load tech stack data. Please check back later.",
+    "categories": {
+      "Languages": "Languages",
+      "Frontend": "Frontend",
+      "Backend": "Backend",
+      "Database": "Database",
+      "Authentication": "Authentication",
+      "UI Frameworks": "UI Frameworks",
+      "Runtime": "Runtime",
+      "Deploy": "Deploy",
+      "Misc Library": "Misc Library"
+    }
+  },
+  "miniProfile": {
+    "title": "DotJumpDot",
+    "subtitle": "Prism Pioneer",
+    "tagline": "Creative Developer • AI Enthusiast • Problem Solver",
+    "bio": "Passionate developer building innovative solutions at the intersection of AI, web development, and user experience. Creating tools that make a difference in the developer community.",
+    "stats": {
+      "projects": "Projects",
+      "contributions": "Contributions",
+      "yearsExp": "Years Exp"
+    },
+    "actions": {
+      "aboutMe": "About Me",
+      "github": "GitHub"
+    }
+  },
+  "projectDetail": {
+    "backToProjects": "Back to Projects",
+    "github": "GitHub",
+    "liveDemo": "Live Demo",
+    "overview": "Overview",
+    "implementation": "Implementation",
+    "outcomes": "Key Outcomes",
+    "techStack": "Tech Stack",
+    "gallery": "Gallery",
+    "screenshot": "Project Screenshot"
   }
 }

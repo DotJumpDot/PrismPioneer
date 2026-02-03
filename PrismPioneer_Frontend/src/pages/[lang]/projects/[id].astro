@@ -23,6 +23,9 @@ interface Props {
 
 const { project } = Astro.props;
 const { lang } = Astro.params;
+import { getTranslations } from '@/utils/i18n';
+import type { Language } from '@/utils/i18n';
+const t = getTranslations(lang as Language);
 const { 
   title, 
   description, 
@@ -31,12 +34,20 @@ const {
   color, 
   techStack, 
   longDescription, 
+  longDescription_th,
   implementation, 
+  implementation_th,
   outcomes, 
+  outcomes_th,
   githubUrl, 
   liveUrl, 
   images 
 } = project;
+
+const isThai = lang === 'th';
+const displayLongDescription = (isThai && longDescription_th) ? longDescription_th : longDescription;
+const displayImplementation = (isThai && implementation_th) ? implementation_th : implementation;
+const displayOutcomes = (isThai && outcomes_th) ? outcomes_th : outcomes;
 ---
 
 <Layout title={title} description={description}>
@@ -54,7 +65,7 @@ const {
           
           <div class="project-category" style={`color: ${color};`}>{category}</div>
           <h1 class="project-title">{title}</h1>
-          <div class="project-date">{new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
+          <div class="project-date">{new Date(date).toLocaleDateString(lang === 'th' ? 'th-TH' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
           
           <div class="project-links">
             {githubUrl && (
@@ -85,14 +96,14 @@ const {
         <div class="content-grid">
           <div class="main-content">
             <section class="content-section">
-              <h2 class="section-title">Overview</h2>
-              <p class="long-description">{longDescription}</p>
+              <h2 class="section-title">{t.projectDetail.overview}</h2>
+              <p class="long-description">{displayLongDescription}</p>
             </section>
 
             <section class="content-section">
-              <h2 class="section-title">Implementation</h2>
+              <h2 class="section-title">{t.projectDetail.implementation}</h2>
               <ul class="detail-list">
-                {implementation.map((item: string) => (
+                {displayImplementation.map((item: string) => (
                   <li class="detail-item">
                     <span class="bullet" style={`background: ${color};`}></span>
                     <p>{item}</p>
@@ -102,9 +113,9 @@ const {
             </section>
 
             <section class="content-section">
-              <h2 class="section-title">Key Outcomes</h2>
+              <h2 class="section-title">{t.projectDetail.outcomes}</h2>
               <ul class="detail-list">
-                {outcomes.map(item => (
+                {displayOutcomes.map((item: string) => (
                   <li class="detail-item">
                     <span class="bullet" style={`background: ${color};`}></span>
                     <p>{item}</p>
@@ -116,21 +127,21 @@ const {
 
           <aside class="side-content">
             <div class="side-card tech-card">
-              <h3 class="side-title">Tech Stack</h3>
+              <h3 class="side-title">{t.projectDetail.techStack}</h3>
               <div class="tech-tags">
-                {techStack.map(tech => (
+                {techStack.map((tech: string) => (
                   <span class="tech-tag" style={`border-color: ${color}44;`}>{tech}</span>
                 ))}
               </div>
             </div>
 
             <div class="side-card gallery-card">
-              <h3 class="side-title">Gallery</h3>
+              <h3 class="side-title">{t.projectDetail.gallery}</h3>
               <div class="gallery-grid">
                 {images.map((image: string) => (
                   <div class="gallery-item">
                     <div class="image-placeholder" style={`background: linear-gradient(135deg, ${color}11, ${color}22);`}>
-                      <span class="img-text">Project Screenshot</span>
+                      <span class="img-text">{t.projectDetail.screenshot}</span>
                     </div>
                   </div>
                 ))}

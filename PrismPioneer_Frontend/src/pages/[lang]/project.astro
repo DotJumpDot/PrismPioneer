@@ -10,11 +10,16 @@ import Layout from '@/layouts/Landing.astro';
 import { projects, categories } from '@/data/projects';
 import ProjectCard from '@/components/Portfolio/ProjectCard.astro';
 import RainbowDivider from '@/components/Landing/RainbowDivider.astro';
+import { getTranslations } from '@/utils/i18n';
+import type { Language } from '@/utils/i18n';
+
+const { lang } = Astro.params;
+const t = getTranslations(lang as Language);
 
 const allProjects = [...projects].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 ---
 
-<Layout title="News & Projects" description="Browse all projects and articles from DotJumpDot. Filter by category and explore the implementation details.">
+<Layout title={t.projects.title} description="Browse all projects and articles from DotJumpDot. Filter by category and explore the implementation details.">
   <section class="news-page pixel-scanline">
     <div class="news-hero">
       <div class="container">
@@ -25,10 +30,10 @@ const allProjects = [...projects].sort((a, b) => new Date(b.date).getTime() - ne
         </div>
         
         <h1 class="news-title">
-          <span class="title-main neon-glow">PROJECTS</span>
+          <span class="title-main neon-glow">{t.projects.title}</span>
         </h1>
         
-        <p class="news-subtitle">A centralized index of all my work, technical articles, and project updates.</p>
+        <p class="news-subtitle">{t.projects.subtitle}</p>
         
         <div class="header-decoration">
           <span class="deco-line"></span>
@@ -43,12 +48,12 @@ const allProjects = [...projects].sort((a, b) => new Date(b.date).getTime() - ne
     <div class="news-content">
       <div class="container">
         <div class="filter-section">
-          <div class="filter-label">FILTER BY CATEGORY:</div>
+          <div class="filter-label">{t.projects.filterByCategory}</div>
           <div class="category-filters">
             {categories.map(category => (
               <button class="filter-btn" data-category={category}>
                 <span class="btn-pixel"></span>
-                <span class="btn-text">{category}</span>
+                <span class="btn-text">{(t.techStack.categories as any)[category] || category}</span>
               </button>
             ))}
           </div>
@@ -65,8 +70,8 @@ const allProjects = [...projects].sort((a, b) => new Date(b.date).getTime() - ne
         <div class="no-results" id="no-results">
           <div class="no-results-content">
             <span class="no-results-icon">🔍</span>
-            <p>No projects found in this category.</p>
-            <button class="reset-btn">Reset Filters</button>
+            <p>{t.projects.noResults}</p>
+            <button class="reset-btn">{t.projects.resetFilters}</button>
           </div>
         </div>
       </div>
